@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ваша розовая картинка + градиент</title>
+    <title>Розовый фон с кнопками</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
             background: 
-                linear-gradient(135deg, rgba(255, 192, 203, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%), /* Полупрозрачный розовый градиент [web:21][file:28] */
-                url("pink_background.jpg"); /* Ваша JPG-картинка [file:28] */
+                linear-gradient(135deg, rgba(255, 192, 203, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%),
+                url("pink_background.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -21,19 +21,68 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative; /* Для позиционирования кнопок [web:1] */
         }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            padding: 0 60px; /* Место для боковых кнопок */
+        }
+        
+        .left-btn, .right-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%; /* Круглые кнопки [web:3] */
+            background: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый [web:1] */
+            color: #666;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease; /* Плавная анимация [web:3] */
+        }
+        
+        .left-btn {
+            left: 40px;
+        }
+        
+        .right-btn {
+            right: 40px;
+        }
+        
+        .left-btn:hover, .right-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         .content {
             background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(255, 182, 193, 0.3); /* Розовая тень [file:28] */
+            box-shadow: 0 4px 20px rgba(255, 182, 193, 0.3);
+            text-align: center;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Ваша розовая градиентная картинка!</h1>
-        <p>Идеально растянута на весь экран с наложенным градиентом.</p>
+    <button class="left-btn" onclick="alert('Левая кнопка!')">‹</button>
+    <button class="right-btn" onclick="alert('Правая кнопка!')">›</button>
+    
+    <div class="container">
+        <div class="content">
+            <h1>Кнопки по бокам!</h1>
+            <p>Полупрозрачные белые кнопки слева и справа.</p>
+        </div>
     </div>
 </body>
 </html>
+
