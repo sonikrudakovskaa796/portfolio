@@ -23,6 +23,7 @@
             overflow: hidden;
             position: relative;
             display: flex;
+            font-family: Arial, sans-serif;
         }
         
         .info-panel {
@@ -114,9 +115,11 @@
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 255, 255, 0.25);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
         }
         
-        .slider-slide:hover .slide-image-container {
+        /* ✅ УВЕЛИЧЕНИЕ ТОЛЬКО ПРИ НАВЕДЕНИИ НА РАМКУ */
+        .slide-image-container:hover {
             transform: scale(1.05);
             box-shadow: 0 35px 100px rgba(0, 0, 0, 0.45);
         }
@@ -129,7 +132,7 @@
             transition: transform 0.4s ease;
         }
         
-        .slider-slide:hover .slide-image-container img {
+        .slide-image-container:hover img {
             transform: scale(1.08);
         }
         
@@ -147,6 +150,19 @@
             text-align: center;
             min-width: 250px;
             z-index: 2;
+        }
+        
+        .slide-overlay h3 {
+            margin: 0 0 10px 0;
+            font-size: 22px;
+            color: #333;
+        }
+        
+        .slide-overlay .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3d3d37;
+            margin-top: 5px;
         }
         
         .nav-btn {
@@ -174,6 +190,7 @@
         .nav-btn:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
         }
         
         .dots {
@@ -206,7 +223,7 @@
     <div class="info-panel">
         <h1>Мебельный салон</h1>
         <div class="current-slide" id="currentSlideInfo">
-            Диван велюровый • 45 900 ₽
+            Велюровый диван • 45 900 ₽
         </div>
         <div class="info-stats">
             <div class="stat-item">
@@ -277,7 +294,6 @@
                 dotsContainer.appendChild(dot);
             });
             
-            // ✅ БОЛЬШЕ КЛОНОВ ДЛЯ ПЛАВНОСТИ
             const firstClone = track.firstElementChild.cloneNode(true);
             const lastClone = track.lastElementChild.cloneNode(true);
             track.appendChild(firstClone);
@@ -288,8 +304,6 @@
         }
         
         function updateSlider() {
-            // ✅ ПЛАВНЫЙ ПЕРЕХОД ПО ВСЕМУ КРУГУ
-            const realIndex = ((currentIndex - 1 + slideCount) % slideCount) + 1;
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateDots();
             updateInfoPanel();
@@ -312,7 +326,6 @@
             pauseAutoScroll();
             currentIndex += direction;
             
-            // ✅ ПЛАВНЫЙ БЕСКОНЕЧНЫЙ ЦИКЛ
             if (currentIndex > slideCount) {
                 currentIndex = 1;
             } else if (currentIndex < 1) {
@@ -320,7 +333,6 @@
             }
             
             updateSlider();
-            
             setTimeout(resumeAutoScroll, 1000);
         }
         
@@ -331,10 +343,11 @@
             setTimeout(resumeAutoScroll, 2000);
         }
         
+        // ✅ АВТОСКРОЛЛ 10 СЕКУНД
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 10000);
+            }, 10000); // 10 секунд
         }
         
         function pauseAutoScroll() {
