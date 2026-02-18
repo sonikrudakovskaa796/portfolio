@@ -46,14 +46,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
         
-        /* ✅ КАРТИНКИ БЕЗ ПЛЮЩЕНИЯ */
-        .slider-slide img {
+        /* ✅ ПРЯМОУГОЛЬНИК С СКРУГЛЁННЫМИ КРАЯМИ */
+        .slide-image-container {
+            width: 650px;    /* Фиксированная ширина */
+            height: 450px;   /* Фиксированная высота */
+            border-radius: 20px;  /* Скруглённые края */
+            overflow: hidden;     /* Обрезает картинку по рамке */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .slide-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Сохраняет пропорции! */
+            object-fit: cover;  /* Заполняет прямоугольник без пустот */
             object-position: center;
         }
         
@@ -195,11 +205,16 @@
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
                 
-                // ✅ ИСПОЛЬЗУЕМ <img> ВМЕСТО background-image
+                // ✅ ПРЯМОУГОЛЬНЫЙ КОНТЕЙНЕР
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'slide-image-container';
+                
                 const img = document.createElement('img');
                 img.src = slideData.image;
                 img.alt = slideData.title;
-                slide.appendChild(img);
+                imageContainer.appendChild(img);
+                
+                slide.appendChild(imageContainer);
                 
                 const overlay = document.createElement('div');
                 overlay.className = 'slide-overlay';
@@ -281,9 +296,9 @@
         }
         
         // Пауза при наведении
-        document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
-        document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
         document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelectorAll('.dot').forEach(dot => 
                 dot.addEventListener('mouseenter', pauseAutoScroll)
             );
@@ -295,8 +310,8 @@
             );
         });
         
-        // Запуск слайдера
         initSlider();
     </script>
 </body>
 </html>
+
