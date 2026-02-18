@@ -41,16 +41,25 @@
         .slider-slide {
             min-width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
             flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
         
-        /* ЦЕННИКИ ВЫШЕ */
+        /* ✅ КАРТИНКИ БЕЗ ПЛЮЩЕНИЯ */
+        .slider-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Сохраняет пропорции! */
+            object-position: center;
+        }
+        
         .slide-overlay {
             position: absolute;
-            bottom: 80px; /* ЦЕННИКИ ВЫШЕ */
+            bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.95);
@@ -60,6 +69,7 @@
             backdrop-filter: blur(10px);
             text-align: center;
             min-width: 220px;
+            z-index: 2;
         }
         
         .slide-overlay h3 {
@@ -184,7 +194,12 @@
             furnitureSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
-                slide.style.backgroundImage = `url(${slideData.image})`;
+                
+                // ✅ ИСПОЛЬЗУЕМ <img> ВМЕСТО background-image
+                const img = document.createElement('img');
+                img.src = slideData.image;
+                img.alt = slideData.title;
+                slide.appendChild(img);
                 
                 const overlay = document.createElement('div');
                 overlay.className = 'slide-overlay';
@@ -252,7 +267,7 @@
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 9000); // 4 секунды
+            }, 9000);
         }
         
         function pauseAutoScroll() {
@@ -268,15 +283,17 @@
         // Пауза при наведении
         document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
         document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
-        document.querySelectorAll('.dot').forEach(dot => 
-            dot.addEventListener('mouseenter', pauseAutoScroll)
-        );
-        
-        document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
-        document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
-        document.querySelectorAll('.dot').forEach(dot => 
-            dot.addEventListener('mouseleave', resumeAutoScroll)
-        );
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.dot').forEach(dot => 
+                dot.addEventListener('mouseenter', pauseAutoScroll)
+            );
+            
+            document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
+            document.querySelectorAll('.dot').forEach(dot => 
+                dot.addEventListener('mouseleave', resumeAutoScroll)
+            );
+        });
         
         // Запуск слайдера
         initSlider();
