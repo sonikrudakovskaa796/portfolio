@@ -47,19 +47,32 @@
             flex-shrink: 0;
         }
         
-        /* НАКЛАДКИ ДЛЯ ТОВАРА */
+        /* ЦЕННИКИ ВЫШЕ */
         .slide-overlay {
             position: absolute;
-            bottom: 30px;
+            bottom: 80px; /* ЦЕННИКИ ВЫШЕ */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.95);
-            padding: 15px 30px;
+            padding: 20px 30px;
             border-radius: 25px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
             text-align: center;
-            min-width: 200px;
+            min-width: 220px;
+        }
+        
+        .slide-overlay h3 {
+            margin: 0 0 8px 0;
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .slide-overlay .price {
+            font-size: 26px;
+            font-weight: bold;
+            color: #3d3d37;
+            margin-top: 5px;
         }
         
         .nav-btn {
@@ -87,6 +100,7 @@
         .nav-btn:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
         }
         
         .dots {
@@ -111,6 +125,7 @@
         .dot.active {
             background: rgba(255, 255, 255, 1);
             transform: scale(1.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -127,32 +142,32 @@
     <script>
         const furnitureSlides = [
             {
-                image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop',
+                image: 'https://i.pinimg.com/1200x/d1/e4/fb/d1e4fb557f04c1d28041a92641e15095.jpg',
                 title: 'Велюровый диван',
                 price: '45 900 ₽'
             },
             {
-                image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop',
+                image: 'https://i.pinimg.com/736x/65/d9/35/65d9352e7ae5c269754b11c523f890af.jpg',
                 title: 'Кухонный гарнитур',
                 price: '128 000 ₽'
             },
             {
-                image: 'https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=1920&h=1080&fit=crop',
-                title: 'Деревянный обеденный стол',
+                image: 'https://i.pinimg.com/736x/4a/f4/4c/4af44ca0560766e105a9a7e29d17b50d.jpg',
+                title: 'Деревянный стол',
                 price: '29 500 ₽'
             },
             {
-                image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&h=1080&fit=crop',
+                image: 'https://i.pinimg.com/1200x/82/bc/93/82bc9360b89c9f8d7519991835e17787.jpg',
                 title: 'Современное кресло',
                 price: '22 900 ₽'
             },
             {
-                image: 'https://images.unsplash.com/photo-1600566752355-3572815c15a6?w=1920&h=1080&fit=crop',
+                image: 'https://i.pinimg.com/1200x/98/1c/f9/981cf91925420783ef5ff6688e4c6e30.jpg',
                 title: 'Шкаф-купе',
                 price: '89 900 ₽'
             },
             {
-                image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&h=1080&fit=crop',
+                image: 'https://i.pinimg.com/736x/de/e6/82/dee682cfd05078b89f832e5ea03b4656.jpg',
                 title: 'Комод лофт',
                 price: '34 700 ₽'
             }
@@ -175,11 +190,8 @@
                 overlay.className = 'slide-overlay';
                 overlay.innerHTML = `
                     <h3>${slideData.title}</h3>
-                    <div style="font-size: 24px; font-weight: bold; color: #e91e63; margin-top: 5px;">
-                        ${slideData.price}
-                    </div>
+                    <div class="price">${slideData.price}</div>
                 `;
-                
                 slide.appendChild(overlay);
                 track.appendChild(slide);
                 
@@ -189,7 +201,7 @@
                 dotsContainer.appendChild(dot);
             });
             
-            // Клоны для бесконечности
+            // Клоны для бесконечного цикла
             const firstClone = track.firstElementChild.cloneNode(true);
             const lastClone = track.lastElementChild.cloneNode(true);
             track.appendChild(firstClone);
@@ -232,13 +244,15 @@
         
         function goToSlide(n) {
             currentIndex = n;
+            pauseAutoScroll();
             updateSlider();
+            setTimeout(resumeAutoScroll, 2000);
         }
         
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 4000);
+            }, 4000); // 4 секунды
         }
         
         function pauseAutoScroll() {
@@ -251,10 +265,20 @@
             startAutoScroll();
         }
         
-        // Пауза при hover
-        document.addEventListener('mouseenter', pauseAutoScroll);
-        document.addEventListener('mouseleave', resumeAutoScroll);
+        // Пауза при наведении
+        document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
+        document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
+        document.querySelectorAll('.dot').forEach(dot => 
+            dot.addEventListener('mouseenter', pauseAutoScroll)
+        );
         
+        document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
+        document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
+        document.querySelectorAll('.dot').forEach(dot => 
+            dot.addEventListener('mouseleave', resumeAutoScroll)
+        );
+        
+        // Запуск слайдера
         initSlider();
     </script>
 </body>
