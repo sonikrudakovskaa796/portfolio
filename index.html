@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Чистый бесконечный слайдер</title>
+    <title>Мебельный магазин - Слайдер</title>
     <style>
         * {
             margin: 0;
@@ -24,7 +24,6 @@
             position: relative;
         }
         
-        /* Слайдер на весь экран */
         .slider-container {
             position: absolute;
             top: 0;
@@ -36,8 +35,7 @@
         .slider-track {
             display: flex;
             height: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .slider-slide {
@@ -45,10 +43,25 @@
             height: 100%;
             background-size: cover;
             background-position: center;
+            position: relative;
             flex-shrink: 0;
         }
         
-        /* КНОПКИ ПО БОКАМ ЭКРАНА */
+        /* НАКЛАДКИ ДЛЯ ТОВАРА */
+        .slide-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            min-width: 200px;
+        }
+        
         .nav-btn {
             position: fixed;
             top: 50%;
@@ -68,21 +81,14 @@
             transition: all 0.3s ease;
         }
         
-        .left-btn {
-            left: 40px;
-        }
-        
-        .right-btn {
-            right: 40px;
-        }
+        .left-btn { left: 40px; }
+        .right-btn { right: 40px; }
         
         .nav-btn:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
         }
         
-        /* ТОЧКИ ВНИЗУ */
         .dots {
             position: fixed;
             bottom: 40px;
@@ -100,60 +106,83 @@
             background: rgba(255, 255, 255, 0.7);
             cursor: pointer;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
         }
         
         .dot.active {
             background: rgba(255, 255, 255, 1);
             transform: scale(1.4);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .dot:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: scale(1.2);
         }
     </style>
 </head>
 <body>
-    <!-- СЛАЙДЕР -->
     <div class="slider-container">
         <div class="slider-track" id="sliderTrack"></div>
     </div>
     
-    <!-- КНОПКИ ПО БОКАМ -->
     <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
     <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
     
-    <!-- ТОЧКИ -->
     <div class="dots" id="dotsContainer"></div>
 
     <script>
-        // Ваши изображения (замените на свои)
-        const slides = [
-            'https://picsum.photos/1920/1080?random=1',
-            'https://picsum.photos/1920/1080?random=2', 
-            'https://picsum.photos/1920/1080?random=3',
-            'https://picsum.photos/1920/1080?random=4'
+        const furnitureSlides = [
+            {
+                image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop',
+                title: 'Велюровый диван',
+                price: '45 900 ₽'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop',
+                title: 'Кухонный гарнитур',
+                price: '128 000 ₽'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=1920&h=1080&fit=crop',
+                title: 'Деревянный обеденный стол',
+                price: '29 500 ₽'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&h=1080&fit=crop',
+                title: 'Современное кресло',
+                price: '22 900 ₽'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1600566752355-3572815c15a6?w=1920&h=1080&fit=crop',
+                title: 'Шкаф-купе',
+                price: '89 900 ₽'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&h=1080&fit=crop',
+                title: 'Комод лофт',
+                price: '34 700 ₽'
+            }
         ];
         
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         let currentIndex = 1;
-        let slideCount = slides.length;
+        let slideCount = furnitureSlides.length;
         let autoScrollInterval;
         let isPaused = false;
         
-        // Создание слайдов и точек
         function initSlider() {
-            // Оригинальные слайды
-            slides.forEach((imgSrc, index) => {
+            furnitureSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
-                slide.style.backgroundImage = `url(${imgSrc})`;
+                slide.style.backgroundImage = `url(${slideData.image})`;
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'slide-overlay';
+                overlay.innerHTML = `
+                    <h3>${slideData.title}</h3>
+                    <div style="font-size: 24px; font-weight: bold; color: #e91e63; margin-top: 5px;">
+                        ${slideData.price}
+                    </div>
+                `;
+                
+                slide.appendChild(overlay);
                 track.appendChild(slide);
                 
-                // Точки
                 const dot = document.createElement('div');
                 dot.className = 'dot';
                 dot.onclick = () => goToSlide(index + 1);
@@ -191,30 +220,25 @@
             } else if (currentIndex === slideCount + 1) {
                 currentIndex = 1;
                 track.style.transition = 'none';
-            } else {
-                track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             }
             
             updateSlider();
             
             setTimeout(() => {
-                track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 resumeAutoScroll();
-            }, 600);
+            }, 100);
         }
         
         function goToSlide(n) {
             currentIndex = n;
-            pauseAutoScroll();
             updateSlider();
-            resumeAutoScroll();
         }
         
-        // ✅ АВТОПРОКРУТКА
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 3500); // 3.5 секунды
+            }, 4000);
         }
         
         function pauseAutoScroll() {
@@ -228,15 +252,9 @@
         }
         
         // Пауза при hover
-        document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
-        document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
-        document.querySelectorAll('.dot').forEach(dot => dot.addEventListener('mouseenter', pauseAutoScroll));
-        
-        document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
-        document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
+        document.addEventListener('mouseenter', pauseAutoScroll);
         document.addEventListener('mouseleave', resumeAutoScroll);
         
-        // Запуск
         initSlider();
     </script>
 </body>
