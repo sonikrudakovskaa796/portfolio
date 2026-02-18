@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Слайдер с точками и табличкой</title>
+    <title>Бесконечный слайдер</title>
     <style>
         body {
             margin: 0;
@@ -11,29 +11,44 @@
             height: 100vh;
             background: 
                 linear-gradient(135deg, rgba(255, 192, 203, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%),
-                url("pink_background.jpg"); /* Новый фон */
+                url("pink_background.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             font-family: Arial, sans-serif;
-            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
         }
         
-        .main-content {
-            display: flex;
-            align-items: center;
+        /* Слайдер-контейнер */
+        .slider-container {
+            position: relative;
             width: 100%;
+            height: 60vh;
             max-width: 800px;
-            padding: 0 100px;
-            flex-grow: 1;
+            margin: 0 auto;
         }
         
+        .slider-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slider-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+        
+        /* Боковые кнопки */
         .left-btn, .right-btn {
             position: absolute;
             top: 50%;
@@ -42,67 +57,33 @@
             height: 60px;
             border: none;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             color: #666;
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
             transition: all 0.3s ease;
         }
         
-        .left-btn { left: 40px; }
-        .right-btn { right: 40px; }
+        .left-btn { left: 20px; }
+        .right-btn { right: 20px; }
         
         .left-btn:hover, .right-btn:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         
-        .content {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(255, 182, 193, 0.4);
-            text-align: center;
-            min-width: 300px;
-        }
-        
-        /* Табличка посередине */
-        .table-container {
-            margin: 20px 0;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        th {
-            background: rgba(255, 192, 203, 0.3);
-            font-weight: bold;
-        }
-        
-        /* Индикаторы точек внизу */
+        /* Точки внизу */
         .dots {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            z-index: 10;
         }
         
         .dot {
@@ -116,80 +97,111 @@
         
         .dot.active {
             background: rgba(255, 255, 255, 1);
-            transform: scale(1.2);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-        
-        .dot:hover {
-            background: rgba(255, 255, 255, 1);
+            transform: scale(1.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <button class="left-btn" onclick="changeSlide(-1)">‹</button>
-    <button class="right-btn" onclick="changeSlide(1)">›</button>
-    
-    <div class="main-content">
-        <div class="content" id="slideContent">
-            <h1 id="slideTitle">Слайд 1</h1>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr><th>Параметр</th><th>Значение</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Цвет</td><td>Розовый</td></tr>
-                        <tr><td>Тип</td><td>Градиент</td></tr>
-                        <tr><td>Статус</td><td>Активен</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p>Перелистывайте кнопками или точками!</p>
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+            <!-- Слайды будут добавлены JS -->
         </div>
-    </div>
-    
-    <!-- Точки индикаторов -->
-    <div class="dots">
-        <div class="dot active" onclick="currentSlide(1)"></div>
-        <div class="dot" onclick="currentSlide(2)"></div>
-        <div class="dot" onclick="currentSlide(3)"></div>
+        
+        <button class="left-btn" onclick="moveSlide(-1)">‹</button>
+        <button class="right-btn" onclick="moveSlide(1)">›</button>
+        
+        <div class="dots" id="dotsContainer"></div>
     </div>
 
     <script>
-        let currentSlideIndex = 1;
-        showSlide(currentSlideIndex);
-
-        function changeSlide(n) {
-            showSlide(currentSlideIndex += n);
+        const slides = [
+            'https://picsum.photos/800/500?random=1', // Замените на свои изображения
+            'https://picsum.photos/800/500?random=2',
+            'https://picsum.photos/800/500?random=3',
+            'https://picsum.photos/800/500?random=4'
+        ];
+        
+        const track = document.getElementById('sliderTrack');
+        const dotsContainer = document.getElementById('dotsContainer');
+        let currentIndex = 1;
+        let slideCount = slides.length;
+        
+        // Создаём слайды + клоны для бесконечности
+        slides.forEach((imgSrc, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'slider-slide';
+            slide.style.backgroundImage = `url(${imgSrc})`;
+            track.appendChild(slide);
+            
+            // Создаём точки
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.onclick = () => goToSlide(index + 1);
+            dotsContainer.appendChild(dot);
+        });
+        
+        // Клонируем первый и последний слайды для бесконечного цикла
+        const firstClone = track.firstElementChild.cloneNode(true);
+        const lastClone = track.lastElementChild.cloneNode(true);
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, track.firstElementChild);
+        
+        const dots = document.querySelectorAll('.dot');
+        
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
         }
-
-        function currentSlide(n) {
-            showSlide(currentSlideIndex = n);
-        }
-
-        function showSlide(n) {
-            const slides = [
-                { title: "Слайд 1", color: "Розовый", type: "Градиент", status: "Активен" },
-                { title: "Слайд 2", color: "Фиолетовый", type: "Сплошной", status: "Неактивен" },
-                { title: "Слайд 3", color: "Белый", type: "Паттерн", status: "Активен" }
-            ];
-            
-            const slide = slides[n - 1] || slides[0];
-            document.getElementById('slideTitle').textContent = slide.title;
-            
-            // Обновляем таблицу
-            const rows = document.querySelectorAll('tbody tr');
-            rows[0].cells[1].textContent = slide.color;
-            rows[1].cells[1].textContent = slide.type;
-            rows[2].cells[1].textContent = slide.status;
-            
-            // Обновляем точки
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index + 1 === n);
+        
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentIndex);
             });
         }
+        
+        function moveSlide(direction) {
+            currentIndex += direction;
+            
+            if (currentIndex === 0) {
+                // Переход к последнему
+                currentIndex = slideCount;
+                track.style.transition = 'none';
+            } else if (currentIndex > slideCount + 1) {
+                // Переход к первому
+                currentIndex = 1;
+                track.style.transition = 'none';
+            } else {
+                track.style.transition = 'transform 0.5s ease';
+            }
+            
+            updateSlider();
+            
+            // Восстанавливаем transition после анимации
+            setTimeout(() => {
+                if (currentIndex === slideCount + 1 || currentIndex === 0) {
+                    track.style.transition = 'none';
+                    updateSlider();
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.5s ease';
+                    }, 50);
+                }
+            }, 500);
+        }
+        
+        function goToSlide(n) {
+            currentIndex = n;
+            updateSlider();
+        }
+        
+        // Автопрокрутка каждые 4 сек
+        setInterval(() => moveSlide(1), 4000);
+        
+        // Инициализация
+        updateSlider();
     </script>
 </body>
 </html>
+
 
 
