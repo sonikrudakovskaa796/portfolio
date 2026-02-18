@@ -22,6 +22,61 @@
             background-attachment: fixed;
             overflow: hidden;
             position: relative;
+            display: flex;
+        }
+        
+        .info-panel {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        .info-panel h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .info-panel .current-slide {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .info-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e91e63;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .slider-section {
+            flex: 1;
+            position: relative;
+            margin-left: 20px;
+            padding-right: 40px;
         }
         
         .slider-container {
@@ -35,7 +90,6 @@
         .slider-track {
             display: flex;
             height: 100%;
-            /* ✅ СУПЕР-ПЛАВНАЯ АНИМАЦИЯ */
             transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         
@@ -46,12 +100,13 @@
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
+            padding-right: 50px;
         }
         
         .slide-image-container {
-            width: 850px;
-            height: 550px;
+            width: 750px;
+            height: 500px;
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
@@ -61,7 +116,6 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
-        /* ✅ ПРИБЛИЖЕНИЕ КАРТИНКИ при hover */
         .slider-slide:hover .slide-image-container {
             transform: scale(1.05);
             box-shadow: 0 35px 100px rgba(0, 0, 0, 0.45);
@@ -72,19 +126,19 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            transition: transform 0.4s ease; /* Плавное приближение картинки */
+            transition: transform 0.4s ease;
         }
         
         .slider-slide:hover .slide-image-container img {
-            transform: scale(1.08); /* Картинка приближается */
+            transform: scale(1.08);
         }
         
-        /* ✅ ЦЕНА ДАЛЬШЕ ВНИЗ */
         .slide-overlay {
             position: absolute;
-            bottom: 30px; /* Было 100px → 30px (ниже) */
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 30px;
+            right: 60px;
+            left: auto;
+            transform: none;
             background: rgba(255, 255, 255, 0.95);
             padding: 25px 35px;
             border-radius: 30px;
@@ -95,21 +149,8 @@
             z-index: 2;
         }
         
-        .slide-overlay h3 {
-            margin: 0 0 10px 0;
-            font-size: 22px;
-            color: #333;
-        }
-        
-        .slide-overlay .price {
-            font-size: 28px;
-            font-weight: bold;
-            color: #3d3d37;
-            margin-top: 5px;
-        }
-        
         .nav-btn {
-            position: fixed;
+            position: absolute;
             top: 50%;
             transform: translateY(-50%);
             width: 70px;
@@ -127,17 +168,16 @@
             transition: all 0.3s ease;
         }
         
-        .left-btn { left: 40px; }
-        .right-btn { right: 40px; }
+        .left-btn { left: 30px; }
+        .right-btn { right: 30px; }
         
         .nav-btn:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
         }
         
         .dots {
-            position: fixed;
+            position: absolute;
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
@@ -163,77 +203,71 @@
     </style>
 </head>
 <body>
-    <div class="slider-container">
-        <div class="slider-track" id="sliderTrack"></div>
+    <div class="info-panel">
+        <h1>Мебельный салон</h1>
+        <div class="current-slide" id="currentSlideInfo">
+            Диван велюровый • 45 900 ₽
+        </div>
+        <div class="info-stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalSlides">6</div>
+                <div class="stat-label">Моделей</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="currentSlideNum">1</div>
+                <div class="stat-label">Текущий</div>
+            </div>
+        </div>
     </div>
     
-    <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
-    <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
-    
-    <div class="dots" id="dotsContainer"></div>
+    <div class="slider-section">
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack"></div>
+        </div>
+        
+        <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
+        <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
+        
+        <div class="dots" id="dotsContainer"></div>
+    </div>
 
     <script>
         const furnitureSlides = [
-            {
-                image: 'https://i.pinimg.com/1200x/d1/e4/fb/d1e4fb557f04c1d28041a92641e15095.jpg',
-                title: 'Велюровый диван',
-                price: '45 900 ₽'
-            },
-            {
-                image: 'https://i.pinimg.com/736x/65/d9/35/65d9352e7ae5c269754b11c523f890af.jpg',
-                title: 'Кухонный гарнитур',
-                price: '128 000 ₽'
-            },
-            {
-                image: 'https://i.pinimg.com/736x/4a/f4/4c/4af44ca0560766e105a9a7e29d17b50d.jpg',
-                title: 'Деревянный стол',
-                price: '29 500 ₽'
-            },
-            {
-                image: 'https://i.pinimg.com/1200x/82/bc/93/82bc9360b89c9f8d7519991835e17787.jpg',
-                title: 'Современное кресло',
-                price: '22 900 ₽'
-            },
-            {
-                image: 'https://i.pinimg.com/1200x/98/1c/f9/981cf91925420783ef5ff6688e4c6e30.jpg',
-                title: 'Шкаф-купе',
-                price: '89 900 ₽'
-            },
-            {
-                image: 'https://i.pinimg.com/736x/de/e6/82/dee682cfd05078b89f832e5ea03b4656.jpg',
-                title: 'Комод лофт',
-                price: '34 700 ₽'
-            }
+            {image: 'https://i.pinimg.com/1200x/d1/e4/fb/d1e4fb557f04c1d28041a92641e15095.jpg', title: 'Велюровый диван', price: '45 900 ₽'},
+            {image: 'https://i.pinimg.com/736x/65/d9/35/65d9352e7ae5c269754b11c523f890af.jpg', title: 'Кухонный гарнитур', price: '128 000 ₽'},
+            {image: 'https://i.pinimg.com/736x/4a/f4/4c/4af44ca0560766e105a9a7e29d17b50d.jpg', title: 'Деревянный стол', price: '29 500 ₽'},
+            {image: 'https://i.pinimg.com/1200x/82/bc/93/82bc9360b89c9f8d7519991835e17787.jpg', title: 'Современное кресло', price: '22 900 ₽'},
+            {image: 'https://i.pinimg.com/1200x/98/1c/f9/981cf91925420783ef5ff6688e4c6e30.jpg', title: 'Шкаф-купе', price: '89 900 ₽'},
+            {image: 'https://i.pinimg.com/736x/de/e6/82/dee682cfd05078b89f832e5ea03b4656.jpg', title: 'Комод лофт', price: '34 700 ₽'}
         ];
         
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
+        const currentSlideInfo = document.getElementById('currentSlideInfo');
+        const currentSlideNum = document.getElementById('currentSlideNum');
         let currentIndex = 1;
         let slideCount = furnitureSlides.length;
         let autoScrollInterval;
         let isPaused = false;
         
         function initSlider() {
+            document.getElementById('totalSlides').textContent = slideCount;
+            
             furnitureSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
                 
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'slide-image-container';
-                
                 const img = document.createElement('img');
                 img.src = slideData.image;
                 img.alt = slideData.title;
                 imageContainer.appendChild(img);
-                
                 slide.appendChild(imageContainer);
                 
                 const overlay = document.createElement('div');
                 overlay.className = 'slide-overlay';
-                overlay.innerHTML = `
-                    <h3>${slideData.title}</h3>
-                    <div class="price">${slideData.price}</div>
-                `;
+                overlay.innerHTML = `<h3>${slideData.title}</h3><div class="price">${slideData.price}</div>`;
                 slide.appendChild(overlay);
                 track.appendChild(slide);
                 
@@ -243,6 +277,7 @@
                 dotsContainer.appendChild(dot);
             });
             
+            // ✅ БОЛЬШЕ КЛОНОВ ДЛЯ ПЛАВНОСТИ
             const firstClone = track.firstElementChild.cloneNode(true);
             const lastClone = track.lastElementChild.cloneNode(true);
             track.appendChild(firstClone);
@@ -253,34 +288,40 @@
         }
         
         function updateSlider() {
+            // ✅ ПЛАВНЫЙ ПЕРЕХОД ПО ВСЕМУ КРУГУ
+            const realIndex = ((currentIndex - 1 + slideCount) % slideCount) + 1;
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateDots();
+            updateInfoPanel();
+        }
+        
+        function updateInfoPanel() {
+            const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+            const slideData = furnitureSlides[realIndex] || furnitureSlides[0];
+            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
+            currentSlideNum.textContent = realIndex + 1;
         }
         
         function updateDots() {
             document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index + 1 === currentIndex);
+                dot.classList.toggle('active', index + 1 === ((currentIndex - 1) % slideCount + 1));
             });
         }
         
         function moveSlide(direction) {
-            currentIndex += direction;
             pauseAutoScroll();
+            currentIndex += direction;
             
-            if (currentIndex === 0) {
-                currentIndex = slideCount;
-                track.style.transition = 'none';
-            } else if (currentIndex === slideCount + 1) {
+            // ✅ ПЛАВНЫЙ БЕСКОНЕЧНЫЙ ЦИКЛ
+            if (currentIndex > slideCount) {
                 currentIndex = 1;
-                track.style.transition = 'none';
+            } else if (currentIndex < 1) {
+                currentIndex = slideCount;
             }
             
             updateSlider();
             
-            setTimeout(() => {
-                track.style.transition = 'transform 1s cubic-bezier(0.25, 0.1, 0.25, 1)';
-                resumeAutoScroll();
-            }, 50);
+            setTimeout(resumeAutoScroll, 1000);
         }
         
         function goToSlide(n) {
@@ -293,7 +334,7 @@
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 9000);
+            }, 10000);
         }
         
         function pauseAutoScroll() {
@@ -309,15 +350,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
-            document.querySelectorAll('.dot').forEach(dot => 
-                dot.addEventListener('mouseenter', pauseAutoScroll)
-            );
-            
+            document.querySelectorAll('.dot').forEach(dot => dot.addEventListener('mouseenter', pauseAutoScroll));
             document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
             document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
-            document.querySelectorAll('.dot').forEach(dot => 
-                dot.addEventListener('mouseleave', resumeAutoScroll)
-            );
+            document.querySelectorAll('.dot').forEach(dot => dot.addEventListener('mouseleave', resumeAutoScroll));
         });
         
         initSlider();
