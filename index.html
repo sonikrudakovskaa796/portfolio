@@ -332,20 +332,20 @@
             }
             
             updateSlider();
-            setTimeout(resumeAutoScroll, 1000);
+            setTimeout(resumeAutoScroll, 7000);
         }
         
         function goToSlide(n) {
             currentIndex = n;
             pauseAutoScroll();
             updateSlider();
-            setTimeout(resumeAutoScroll, 2000);
+            setTimeout(resumeAutoScroll, 7000);
         }
         
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 10000);
+            }, 7000);
         }
         
         function pauseAutoScroll() {
