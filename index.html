@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Постеры A4 - Слайдер</title>
+    <title>Постеры - Слайдер</title>
     <style>
         * {
             margin: 0;
@@ -91,11 +91,12 @@
             padding-right: 20px;
         }
         
+        /* ✅ НОВЫЙ КОМПАКТНЫЙ A4 РАЗМЕР */
         .slide-image-container {
-            width: 830px;
-            height: 1200px;
-            max-height: 90vh;
-            border-radius: 25px;
+            width: 700px;     /* Компактный A4 */
+            height: 1000px;   /* Компактный A4 */
+            max-height: 85vh;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4);
             background: rgba(255, 255, 255, 0.05);
@@ -178,7 +179,7 @@
 </head>
 <body>
     <div class="info-panel">
-        <h1>📄 Постеры A4</h1>
+        <h1>🖼️ Постеры</h1>
         <div class="current-slide" id="currentSlideInfo">
             Summer party • 1 290 ₽
         </div>
@@ -200,7 +201,7 @@
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
             {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
             {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
-            {image: 'плакат 1.png', title: 'Beauty', price: '1 590 ₽'}
+            {image: 'plakat1.png', title: 'Постер 4', price: '1 590 ₽'}
         ];
         
         const track = document.getElementById('sliderTrack');
@@ -221,6 +222,9 @@
                 const img = document.createElement('img');
                 img.src = slideData.image;
                 img.alt = slideData.title;
+                img.onerror = function() {
+                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjEwMDBweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5cdDJm8INC60LDRgNCw0L3QutCw0YAiPC90ZXh0Pjwvc3ZnPg==';
+                };
                 imageContainer.appendChild(img);
                 slide.appendChild(imageContainer);
                 
