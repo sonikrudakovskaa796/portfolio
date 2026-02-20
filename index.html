@@ -51,6 +51,7 @@
             margin-bottom: 30px;
         }
         
+        /* ✅ УБРАЛИ НАДПИСИ "Моделей" и "Текущий" */
         .info-stats {
             display: flex;
             gap: 30px;
@@ -67,11 +68,7 @@
             color: #e91e63;
         }
         
-        .stat-label {
-            font-size: 14px;
-            color: #888;
-            margin-top: 5px;
-        }
+        /* ✅ УБРАЛИ .stat-label */
         
         .slider-section {
             flex: 1;
@@ -94,6 +91,7 @@
             transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         
+        /* ✅ КАРТИНКИ БЛИЖЕ К ЦЕНТРУ */
         .slider-slide {
             min-width: 100%;
             height: 100%;
@@ -101,8 +99,8 @@
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding-right: 50px;
+            justify-content: center; /* Было flex-end */
+            padding-right: 20px; /* ✅ Уменьшили с 50px */
         }
         
         .slide-image-container {
@@ -118,7 +116,6 @@
             cursor: pointer;
         }
         
-        /* ✅ УВЕЛИЧЕНИЕ ТОЛЬКО ПРИ НАВЕДЕНИИ НА РАМКУ */
         .slide-image-container:hover {
             transform: scale(1.05);
             box-shadow: 0 35px 100px rgba(0, 0, 0, 0.45);
@@ -136,13 +133,14 @@
             transform: scale(1.08);
         }
         
+        /* ✅ ПЛАШКИ ЧУТЬ ПРОЗРАЧНЫЕ */
         .slide-overlay {
             position: absolute;
             bottom: 30px;
-            right: 60px;
-            left: auto;
-            transform: none;
-            background: rgba(255, 255, 255, 0.95);
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%); /* Центрируем */
+            background: rgba(255, 255, 255, 0.85); /* ✅ Было 0.95 → 0.85 */
             padding: 25px 35px;
             border-radius: 30px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
@@ -226,13 +224,12 @@
             Велюровый диван • 45 900 ₽
         </div>
         <div class="info-stats">
+            <!-- ✅ УБРАЛИ НАДПИСИ "Моделей" и "Текущий" -->
             <div class="stat-item">
                 <div class="stat-number" id="totalSlides">6</div>
-                <div class="stat-label">Моделей</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number" id="currentSlideNum">1</div>
-                <div class="stat-label">Текущий</div>
             </div>
         </div>
     </div>
@@ -248,6 +245,7 @@
         <div class="dots" id="dotsContainer"></div>
     </div>
 
+    <!-- JS остается ТОТ ЖЕ -->
     <script>
         const furnitureSlides = [
             {image: 'https://i.pinimg.com/1200x/d1/e4/fb/d1e4fb557f04c1d28041a92641e15095.jpg', title: 'Велюровый диван', price: '45 900 ₽'},
@@ -258,6 +256,7 @@
             {image: 'https://i.pinimg.com/736x/de/e6/82/dee682cfd05078b89f832e5ea03b4656.jpg', title: 'Комод лофт', price: '34 700 ₽'}
         ];
         
+        // Остальной JavaScript код без изменений...
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
@@ -343,11 +342,10 @@
             setTimeout(resumeAutoScroll, 2000);
         }
         
-        // ✅ АВТОСКРОЛЛ 10 СЕКУНД
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 10000); // 10 секунд
+            }, 10000);
         }
         
         function pauseAutoScroll() {
@@ -373,12 +371,4 @@
     </script>
 </body>
 </html>
-```html
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мебельный магазин - Слайдер</title>
-    <style>
-        *
+
