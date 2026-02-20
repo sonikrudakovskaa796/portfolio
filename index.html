@@ -28,7 +28,7 @@
         
         .info-panel {
             width: 350px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.6); /* ✅ ЕЩЕ ПРОЗРАЧНЕЕ */
             backdrop-filter: blur(20px);
             padding: 40px;
             display: flex;
@@ -49,10 +49,10 @@
             font-size: 18px;
             color: #666;
             margin-bottom: 50px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.65); /* ✅ ЕЩЕ ПРОЗРАЧНЕЕ */
             padding: 15px 20px;
             border-radius: 15px;
-            backdrop-filter: blur(40px);
+            backdrop-filter: blur(10px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
         
@@ -88,14 +88,13 @@
             padding-right: 20px;
         }
         
-        /* ✅ УВЕЛИЧЕННЫЕ ФОТО */
         .slide-image-container {
-            width: 850px;  /* ✅ Было 750px */
-            height: 600px; /* ✅ Было 500px */
+            width: 850px;
+            height: 600px;
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05); /* ✅ ЕЩЕ ПРОЗРАЧНЕЕ */
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 255, 255, 0.25);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -119,19 +118,17 @@
             transform: scale(1.08);
         }
         
-        /* ✅ УБРАНЫ ЦЕННИКИ */
-        
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 70px;
-            height: 70px;
+            width: 55px;
+            height: 55px;
             border: none;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.7); /* ✅ ЕЩЕ ПРОЗРАЧНЕЕ */
             color: #666;
-            font-size: 28px;
+            font-size: 22px;
             font-weight: bold;
             cursor: pointer;
             z-index: 100;
@@ -163,7 +160,7 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.5); /* ✅ ЕЩЕ ПРОЗРАЧНЕЕ */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -194,6 +191,7 @@
         <div class="dots" id="dotsContainer"></div>
     </div>
 
+    <!-- JavaScript остается тот же -->
     <script>
         const furnitureSlides = [
             {image: 'https://i.pinimg.com/1200x/d1/e4/fb/d1e4fb557f04c1d28041a92641e15095.jpg', title: 'Велюровый диван', price: '45 900 ₽'},
@@ -204,6 +202,7 @@
             {image: 'https://i.pinimg.com/736x/de/e6/82/dee682cfd05078b89f832e5ea03b4656.jpg', title: 'Комод лофт', price: '34 700 ₽'}
         ];
         
+        // ... остальной JavaScript без изменений
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
@@ -217,7 +216,6 @@
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
                 
-                // ✅ УБРАЛИ overlay с ценником
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'slide-image-container';
                 const img = document.createElement('img');
