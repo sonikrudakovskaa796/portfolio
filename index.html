@@ -4,96 +4,337 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Постеры - Слайдер</title>
-    <link href="https://fonts.googleapis.com/css2?family=Chair:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * {margin:0;padding:0;box-sizing:border-box;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            height:100vh;
-            background:linear-gradient(135deg,rgba(255,182,193,0.7)0%,rgba(253,240,235,0.5)100%),url("pink_background.jpg");
-            background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;
-            overflow:hidden;position:relative;display:flex;font-family:'Chair',Arial,sans-serif;
+            height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(253, 240, 235, 0.5) 100%),
+                url("pink_background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            font-family: Arial, sans-serif;
         }
+        
         .info-panel {
-            width:380px;background:rgba(253,245,240,0.75);backdrop-filter:blur(20px);
-            padding:40px;display:flex;flex-direction:column;justify-content:center;box-shadow:5px 0 30px rgba(255,182,193,0.3);z-index:10;
+            width: 380px;
+            background: rgba(253, 245, 240, 0.75);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
+            z-index: 10;
         }
-        .info-panel h1 { 
-            font-size:34px;color:#d87093;margin-bottom:20px;font-weight:700;
-            font-family:'Chair',serif;letter-spacing:0.5px;
+        
+        .info-panel h1 {
+            font-size: 34px;
+            color: #d87093;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
+        
         .info-panel .current-slide {
-            font-size:20px;color:#666;margin-bottom:50px;background:rgba(255,245,240,0.85);
-            padding:18px 25px;border-radius:20px;backdrop-filter:blur(10px);box-shadow:0 5px 20px rgba(216,112,147,0.2);
-            font-family:'Chair',sans-serif;font-weight:500;
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 50px;
+            background: rgba(255, 245, 240, 0.85);
+            padding: 18px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
+        
         .slider-section {
-            flex:1;position:relative;margin-left:20px;padding-right:50px;display:flex;align-items:center;justify-content:center;
+            flex: 1;
+            position: relative;
+            margin-left: 20px;
+            padding-right: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .slider-container {position:absolute;top:0;left:0;width:100%;height:100%;}
+        
+        .slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
         .slider-track {
-            display:flex;height:100%;transition:transform 1s cubic-bezier(0.25,0.1,0.25,1);will-change:transform;
+            display: flex;
+            height: 100%;
+            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
+        
         .slider-slide {
-            min-width:100%;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding-right:20px;
+            min-width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-right: 20px;
         }
+        
         .slide-image-container {
-            width:570px;height:1122px;max-height:85vh;border-radius:20px;overflow:hidden;box-shadow:0 30px 100px rgba(216,112,147,0.4);
-            background:rgba(255,245,240,0.1);backdrop-filter:blur(15px);border:3px solid rgba(255,182,193,0.6);
-            transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);cursor:pointer;
+            width: 570px;
+            height: 1122px;
+            max-height: 85vh;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 100px rgba(216, 112, 147, 0.4);
+            background: rgba(255, 245, 240, 0.1);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 182, 193, 0.6);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
         }
-        .slide-image-container:hover {transform:scale(1.02);box-shadow:0 40px 120px rgba(216,112,147,0.5);}
+        
+        .slide-image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 120px rgba(216, 112, 147, 0.5);
+        }
+        
         .slide-image-container img {
-            width:100%;height:100%;object-fit:contain;object-position:center;transition:transform 0.4s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.4s ease;
         }
-        .slide-image-container:hover img {transform:scale(1.02);}
+        
+        .slide-image-container:hover img {
+            transform: scale(1.02);
+        }
+        
         .nav-btn {
-            position:absolute;top:50%;transform:translateY(-50%);width:55px;height:55px;border:none;border-radius:50%;
-            background:rgba(253,245,240,0.85);color:#d87093;font-size:20px;font-weight:bold;cursor:pointer;z-index:100;
-            box-shadow:0 8px 25px rgba(216,112,147,0.4);backdrop-filter:blur(10px);transition:all 0.3s ease;
-            font-family:'Chair',sans-serif;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(253, 245, 240, 0.85);
+            color: #d87093;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
-        .left-btn {left:40px;}.right-btn {right:40px;}
+        
+        .left-btn { left: 40px; }
+        .right-btn { right: 40px; }
+        
         .nav-btn:hover {
-            background:rgba(255,182,193,0.95);transform:translateY(-50%) scale(1.1);color:white;box-shadow:0 12px 35px rgba(216,112,147,0.6);
+            background: rgba(255, 182, 193, 0.95);
+            transform: translateY(-50%) scale(1.1);
+            color: white;
+            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.6);
         }
+        
+        /* ✅ ТОЧКИ ПО СЕРЕДИНЕ ВСЕГО ЭКРАНА */
         .dots {
-            position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:100;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+            padding: 15px 25px;
+            background: rgba(253, 245, 240, 0.9);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(216, 112, 147, 0.4);
         }
+        
         .dot {
-            width:14px;height:14px;border-radius:50%;background:rgba(255,182,193,0.7);cursor:pointer;transition:all 0.3s ease;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .dot.active {background:#d87093;transform:scale(1.4);box-shadow:0 4px 15px rgba(216,112,147,0.5);}
+        
+        .dot.active {
+            background: #d87093;
+            transform: scale(1.4);
+            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .dots {
+                bottom: 20px;
+                padding: 10px 20px;
+                gap: 10px;
+            }
+            
+            .dot {
+                width: 12px;
+                height: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="info-panel">
         <h1>🖼️ Постеры</h1>
-        <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
+        <div class="current-slide" id="currentSlideInfo">
+            Summer party • 1 290 ₽
+        </div>
     </div>
     
     <div class="slider-section">
         <div class="slider-container">
             <div class="slider-track" id="sliderTrack"></div>
         </div>
+        
         <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
         <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
-        <div class="dots" id="dotsContainer"></div>
     </div>
 
+    <!-- ✅ ТОЧКИ ПЕРЕНЕСЕНЫ ВЫШЕ СЛАЙДЕРА ПО СЕРЕДИНЕ ЭКРАНА -->
+    <div class="dots" id="dotsContainer"></div>
+
     <script>
-        const posterSlides=[{image:'пляж3.jpg',title:'Summer party',price:'1 290 ₽'},{image:'постер 14 ф.png',title:"Valentine's day",price:'1 490 ₽'},{image:'poster-merry-chrismas.jpg',title:'Merry Christmas 2026',price:'1 390 ₽'},{image:'plakat1.png',title:'Постер 4',price:'1 590 ₽'}];
-        const track=document.getElementById('sliderTrack'),dotsContainer=document.getElementById('dotsContainer'),currentSlideInfo=document.getElementById('currentSlideInfo');
-        let currentIndex=1,slideCount=posterSlides.length,autoScrollInterval,isPaused=false;
-        function initSlider(){posterSlides.forEach((slideData,index)=>{const slide=document.createElement('div');slide.className='slider-slide';const imageContainer=document.createElement('div');imageContainer.className='slide-image-container';const img=document.createElement('img');img.src=slideData.image;img.alt=slideData.title;img.onerror=function(){this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTcwIiBoZWlnaHQ9IjExMjJweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5cdDJm8INC60LDRgNCw0L3QutCw0YAiPC90ZXh0Pjwvc3ZnPg==';};imageContainer.appendChild(img);slide.appendChild(imageContainer);track.appendChild(slide);const dot=document.createElement('div');dot.className='dot';dot.onclick=()=>goToSlide(index+1);dotsContainer.appendChild(dot);});const firstClone=track.firstElementChild.cloneNode(true),lastClone=track.lastElementChild.cloneNode(true);track.appendChild(firstClone);track.insertBefore(lastClone,track.firstElementChild);updateSlider();startAutoScroll();}
-        function updateSlider(){track.style.transform=`translateX(-${currentIndex*100}%)`;updateDots();updateInfoPanel();}
-        function updateInfoPanel(){const realIndex=(currentIndex-1)%slideCount;const slideData=posterSlides[realIndex]||posterSlides[0];currentSlideInfo.textContent=`${slideData.title} • ${slideData.price}`;}
-        function updateDots(){document.querySelectorAll('.dot').forEach((dot,index)=>{const realIndex=(currentIndex-1)%slideCount;dot.classList.toggle('active',index===realIndex);});}
-        function moveSlide(direction){pauseAutoScroll();currentIndex+=direction;if(currentIndex>slideCount)currentIndex=1;else if(currentIndex<1)currentIndex=slideCount;updateSlider();setTimeout(resumeAutoScroll,1000);}
-        function goToSlide(n){currentIndex=n;pauseAutoScroll();updateSlider();setTimeout(resumeAutoScroll,2000);}
-        function startAutoScroll(){autoScrollInterval=setInterval(()=>{if(!isPaused)moveSlide(1);},8000);}
-        function pauseAutoScroll(){isPaused=true;clearInterval(autoScrollInterval);}
-        function resumeAutoScroll(){isPaused=false;startAutoScroll();}
-        document.addEventListener('DOMContentLoaded',function(){document.querySelector('.left-btn').addEventListener('mouseenter',pauseAutoScroll);document.querySelector('.right-btn').addEventListener('mouseenter',pauseAutoScroll);document.querySelectorAll('.dot').forEach(dot=>dot.addEventListener('mouseenter',pauseAutoScroll));document.querySelector('.left-btn').addEventListener('mouseleave',resumeAutoScroll);document.querySelector('.right-btn').addEventListener('mouseleave',resumeAutoScroll);document.querySelectorAll('.dot').forEach(dot=>dot.addEventListener('mouseleave',resumeAutoScroll));initSlider();});
+        const posterSlides = [
+            {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
+            {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
+            {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
+            {image: 'плакат 1.png', title: 'Постер 4', price: '1 590 ₽'}
+        ];
+        
+        const track = document.getElementById('sliderTrack');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const currentSlideInfo = document.getElementById('currentSlideInfo');
+        let currentIndex = 1;
+        let slideCount = posterSlides.length;
+        let autoScrollInterval;
+        let isPaused = false;
+        
+        function initSlider() {
+            posterSlides.forEach((slideData, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-slide';
+                
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'slide-image-container';
+                const img = document.createElement('img');
+                img.src = slideData.image;
+                img.alt = slideData.title;
+                img.onerror = function() {
+                    this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
+                    this.style.display = 'flex';
+                    this.style.alignItems = 'center';
+                    this.style.justifyContent = 'center';
+                    this.style.color = '#d87093';
+                    this.style.fontSize = '24px';
+                    this.textContent = slideData.title || 'Изображение не загрузилось';
+                };
+                imageContainer.appendChild(img);
+                slide.appendChild(imageContainer);
+                track.appendChild(slide);
+                
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.onclick = () => goToSlide(index + 1);
+                dotsContainer.appendChild(dot);
+            });
+            
+            const firstClone = track.firstElementChild.cloneNode(true);
+            const lastClone = track.lastElementChild.cloneNode(true);
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, track.firstElementChild);
+            
+            updateSlider();
+            startAutoScroll();
+        }
+        
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
+            updateInfoPanel();
+        }
+        
+        function updateInfoPanel() {
+            const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+            const slideData = posterSlides[realIndex] || posterSlides[0];
+            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
+        }
+        
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+                dot.classList.toggle('active', index === realIndex);
+            });
+        }
+        
+        function moveSlide(direction) {
+            pauseAutoScroll();
+            currentIndex += direction;
+            
+            if (currentIndex > slideCount) {
+                currentIndex = 1;
+            } else if (currentIndex < 1) {
+                currentIndex = slideCount;
+            }
+            
+            updateSlider();
+            setTimeout(resumeAutoScroll, 1000);
+        }
+        
+        function goToSlide(n) {
+            currentIndex = n;
+            pauseAutoScroll();
+            updateSlider();
+            setTimeout(resumeAutoScroll, 2000);
+        }
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                if (!isPaused) moveSlide(1);
+            }, 8000);
+        }
+        
+        function pauseAutoScroll() {
+            isPaused = true;
+            clearInterval(autoScrollInterval);
+        }
+        
+        function resumeAutoScroll() {
+            isPaused = false;
+            startAutoScroll();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelectorAll('.dot').forEach(dot => dot.addEventListener('mouseenter', pauseAutoScroll));
+            document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
+            document.querySelectorAll('.dot').forEach(dot => dot.addEventListener('mouseleave', resumeAutoScroll));
+            initSlider();
+        });
     </script>
 </body>
 </html>
