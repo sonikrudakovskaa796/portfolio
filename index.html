@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Постеры - Слайдер (Тёмная тема)</title>
+    <title>Постеры - Слайдер</title>
     <style>
         * {
             margin: 0;
@@ -13,9 +13,9 @@
         
         body {
             height: 100vh;
-            /* ✅ ТЁМНАЯ ТЕМА */
+            /* ✅ Цвета от плаката Beauty (розово-бежевый стиль) */
             background: 
-                linear-gradient(135deg, rgba(40, 20, 35, 0.8) 0%, rgba(25, 15, 25, 0.9) 100%),
+                linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(253, 240, 235, 0.5) 100%),
                 url("pink_background.jpg");
             background-size: cover;
             background-position: center;
@@ -29,38 +29,35 @@
         
         .info-panel {
             width: 380px;
-            /* ✅ Тёмная панель */
-            background: rgba(25, 15, 25, 0.85);
+            /* ✅ Цвет от плаката */
+            background: rgba(253, 245, 240, 0.75);
             backdrop-filter: blur(20px);
             padding: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* ✅ Тёмная тень */
-            box-shadow: 5px 0 30px rgba(216, 112, 147, 0.4);
+            box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
             z-index: 10;
         }
         
         .info-panel h1 {
             font-size: 34px;
-            /* ✅ Светлый текст */
-            color: #f8d7da;
+            /* ✅ Цвет от плаката */
+            color: #d87093;
             margin-bottom: 20px;
             font-weight: 700;
         }
         
         .info-panel .current-slide {
             font-size: 20px;
-            /* ✅ Светлый текст */
-            color: #f0f0f0;
+            color: #666;
             margin-bottom: 50px;
-            /* ✅ Тёмный фон */
-            background: rgba(40, 25, 35, 0.9);
+            /* ✅ Цвет от плаката */
+            background: rgba(255, 245, 240, 0.85);
             padding: 18px 25px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            /* ✅ Розовая тень */
-            box-shadow: 0 5px 20px rgba(216, 112, 147, 0.3);
+            box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
         
         .slider-section {
@@ -104,20 +101,18 @@
             max-height: 85vh;
             border-radius: 20px;
             overflow: hidden;
-            /* ✅ Усиленная тёмная тень */
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.7);
-            /* ✅ Тёмный фон */
-            background: rgba(20, 15, 20, 0.9);
+            box-shadow: 0 30px 100px rgba(216, 112, 147, 0.4);
+            /* ✅ Цвет от плаката */
+            background: rgba(255, 245, 240, 0.1);
             backdrop-filter: blur(15px);
-            /* ✅ Розовая граница */
-            border: 3px solid rgba(216, 112, 147, 0.5);
+            border: 3px solid rgba(255, 182, 193, 0.6);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
         
         .slide-image-container:hover {
             transform: scale(1.02);
-            box-shadow: 0 40px 120px rgba(216, 112, 147, 0.6);
+            box-shadow: 0 40px 120px rgba(216, 112, 147, 0.5);
         }
         
         .slide-image-container img {
@@ -140,16 +135,14 @@
             height: 45px;
             border: none;
             border-radius: 50%;
-            /* ✅ Тёмная кнопка */
-            background: rgba(25, 20, 25, 0.9);
-            /* ✅ Светлый текст */
-            color: #f8d7da;
+            /* ✅ Цвет от плаката */
+            background: rgba(253, 245, 240, 0.85);
+            color: #d87093;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             z-index: 100;
-            /* ✅ Розовая тень */
-            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.5);
+            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
@@ -158,11 +151,10 @@
         .right-btn { right: 40px; }
         
         .nav-btn:hover {
-            /* ✅ Розовый ховер */
-            background: rgba(216, 112, 147, 0.95);
-            color: #1a0f15;
+            background: rgba(255, 182, 193, 0.95);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.7);
+            color: white;
+            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.6);
         }
         
         .dots {
@@ -179,8 +171,8 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            /* ✅ Полупрозрачный розовый */
-            background: rgba(216, 112, 147, 0.6);
+            /* ✅ Цвет от плаката */
+            background: rgba(255, 182, 193, 0.7);
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -188,7 +180,7 @@
         .dot.active {
             background: #d87093;
             transform: scale(1.4);
-            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.7);
+            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.5);
         }
     </style>
 </head>
@@ -216,7 +208,7 @@
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
             {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
             {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
-            {image: 'плакат 1.png', title: 'Beauty', price: '1 590 ₽'}
+            {image: 'plakat1.png', title: 'Постер 4', price: '1 590 ₽'}
         ];
         
         const track = document.getElementById('sliderTrack');
