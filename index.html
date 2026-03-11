@@ -5,25 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Постеры - Слайдер</title>
     <style>
+        /* ✅ ШРИФТ ИЗ ЛОКАЛЬНОГО ФАЙЛА fonts/MyFont.woff2 */
         @font-face {
-            font-family: 'CustomFont';
-            src: url('https://myskotom.ru/tproduct/504619321-803930980142-chair-406') format('truetype');
+            font-family: 'MyFont';
+            src: url('fonts/MyFont-Regular.woff2') format('woff2'),
+                 url('fonts/MyFont-Regular.woff') format('woff'),
+                 url('fonts/MyFont-Regular.ttf') format('truetype');
             font-weight: 400;
             font-style: normal;
             font-display: swap;
         }
         
         @font-face {
-            font-family: 'CustomFont';
-            src: url('https://myskotom.ru/tproduct/504619321-803930980142-chair-406') format('truetype');
-            font-weight: 600;
+            font-family: 'MyFont';
+            src: url('Chair406.otf') format('otf'),
+                 url('fonts/MyFont-Medium.woff') format('woff'),
+                 url('fonts/MyFont-Medium.ttf') format('truetype');
+            font-weight: 500;
             font-style: normal;
             font-display: swap;
         }
         
         @font-face {
-            font-family: 'CustomFont';
-            src: url('https://myskotom.ru/tproduct/504619321-803930980142-chair-406') format('truetype');
+            font-family: 'MyFont';
+            src: url('fonts/MyFont-Bold.woff2') format('woff2'),
+                 url('fonts/MyFont-Bold.woff') format('woff'),
+                 url('fonts/MyFont-Bold.ttf') format('truetype');
             font-weight: 700;
             font-style: normal;
             font-display: swap;
@@ -47,7 +54,7 @@
             overflow: hidden;
             position: relative;
             display: flex;
-            font-family: 'CustomFont', Arial, sans-serif;
+            font-family: 'MyFont', Arial, sans-serif;
         }
         
         .info-panel {
@@ -206,20 +213,10 @@
         }
 
         @media (max-width: 768px) {
-            .dots {
-                gap: 10px;
-            }
-            .dot {
-                width: 12px;
-                height: 12px;
-            }
-            .info-panel {
-                width: 300px;
-                padding: 30px;
-            }
-            .info-panel h1 {
-                font-size: 28px;
-            }
+            .dots { gap: 10px; }
+            .dot { width: 12px; height: 12px; }
+            .info-panel { width: 300px; padding: 30px; }
+            .info-panel h1 { font-size: 28px; }
         }
     </style>
 </head>
@@ -272,7 +269,7 @@
                     this.style.color = '#d87093';
                     this.style.fontSize = '24px';
                     this.style.fontWeight = '600';
-                    this.style.fontFamily = "'CustomFont', sans-serif";
+                    this.style.fontFamily = "'MyFont', sans-serif";
                     this.textContent = slideData.title;
                 };
                 imageContainer.appendChild(img);
@@ -326,13 +323,13 @@
             currentIndex = n;
             pauseAutoScroll();
             updateSlider();
-            setTimeout(resumeAutoScroll, 3000);
+            setTimeout(resumeAutoScroll, 2000);
         }
         
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 5000);
+            }, 8000);
         }
         
         function pauseAutoScroll() {
