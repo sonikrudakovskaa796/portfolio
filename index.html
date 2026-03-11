@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Постеры - Слайдер</title>
     <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('https://myskotom.ru/tproduct/504619321-803930980142-chair-406') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('https://myskotom.ru/tproduct/504619321-803930980142-chair-406') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('https://myskotom.ru/tproduct/504619321-803930980142-chair-406') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -23,7 +47,7 @@
             overflow: hidden;
             position: relative;
             display: flex;
-            font-family: Arial, sans-serif;
+            font-family: 'CustomFont', Arial, sans-serif;
         }
         
         .info-panel {
@@ -40,15 +64,20 @@
         }
         
         .info-panel h1 {
-            font-size: 34px;
-            color: #d87093;
-            margin-bottom: 20px;
+            font-size: 36px;
             font-weight: 700;
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
         
         .info-panel .current-slide {
             font-size: 20px;
-            color: #666;
+            font-weight: 500;
+            color: #555;
             margin-bottom: 50px;
             background: rgba(255, 245, 240, 0.85);
             padding: 18px 25px;
@@ -57,12 +86,11 @@
             box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
         
-        /* ✅ ТОЧКИ ГОРИЗОНТАЛЬНО НА ПАНЕЛИ "ПОСТЕРЫ" */
         .dots {
             display: flex;
-            flex-direction: row;        /* ← ИЗМЕНЕНО: горизонтально */
+            flex-direction: row;
             gap: 12px;
-            justify-content: center;    /* ← по центру панели */
+            justify-content: center;
             margin-top: 20px;
         }
         
@@ -159,7 +187,7 @@
             background: rgba(253, 245, 240, 0.85);
             color: #d87093;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             z-index: 100;
             box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
@@ -189,6 +217,9 @@
                 width: 300px;
                 padding: 30px;
             }
+            .info-panel h1 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -196,8 +227,6 @@
     <div class="info-panel">
         <h1>🖼️ Постеры</h1>
         <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
-        
-        <!-- ✅ ТОЧКИ ГОРИЗОНТАЛЬНО ПО ЦЕНТРУ ПАНЕЛИ -->
         <div class="dots" id="dotsContainer"></div>
     </div>
     
@@ -242,6 +271,8 @@
                     this.style.justifyContent = 'center';
                     this.style.color = '#d87093';
                     this.style.fontSize = '24px';
+                    this.style.fontWeight = '600';
+                    this.style.fontFamily = "'CustomFont', sans-serif";
                     this.textContent = slideData.title;
                 };
                 imageContainer.appendChild(img);
@@ -321,7 +352,6 @@
             document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
             document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
             
-            // ✅ ПАУЗА НА ТОЧКАХ ДЛЯ УДОБСТВА
             document.querySelectorAll('.dot').forEach(dot => {
                 dot.addEventListener('mouseenter', pauseAutoScroll);
                 dot.addEventListener('mouseleave', resumeAutoScroll);
