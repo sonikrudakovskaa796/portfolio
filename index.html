@@ -319,7 +319,7 @@
             if (currentIndex > slideCount) currentIndex = 1;
             else if (currentIndex < 1) currentIndex = slideCount;
             updateSlider();
-            setTimeout(resumeAutoScroll, 5000);
+            setTimeout(resumeAutoScroll, 4000);
         }
         
         function goToSlide(n) {
@@ -332,7 +332,7 @@
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
-            }, 8000);
+            }, 5000);
         }
         
         function pauseAutoScroll() {
