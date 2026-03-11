@@ -57,12 +57,12 @@
             box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
         
-        /* ✅ ТОЧКИ ПЕРЕНЕСЕНЫ НА ПАНЕЛЬ "ПОСТЕРЫ" */
+        /* ✅ ТОЧКИ ГОРИЗОНТАЛЬНО НА ПАНЕЛИ "ПОСТЕРЫ" */
         .dots {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;        /* ← ИЗМЕНЕНО: горизонтально */
             gap: 12px;
-            align-items: center;
+            justify-content: center;    /* ← по центру панели */
             margin-top: 20px;
         }
         
@@ -197,7 +197,7 @@
         <h1>🖼️ Постеры</h1>
         <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
         
-        <!-- ✅ ТОЧКИ ТЕПЕРЬ НА ПАНЕЛИ ПОД ЦЕНОЙ -->
+        <!-- ✅ ТОЧКИ ГОРИЗОНТАЛЬНО ПО ЦЕНТРУ ПАНЕЛИ -->
         <div class="dots" id="dotsContainer"></div>
     </div>
     
