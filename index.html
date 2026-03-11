@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Постеры - Слайдер</title>
     <style>
-        /* ✅ ШРИФТ ИЗ ЛОКАЛЬНОГО ФАЙЛА fonts/MyFont.woff2 */
-        
+        /* ✅ ШРИФТ CHAIR 406 - скачайте с https://myskotom.ru/tproduct/504619321-803930980142-chair-406 */
         @font-face {
-            font-family: 'MyFont';
-            src: url('fonts/Chair406.otf') format('otf'),
-                 url('fonts/MyFont-Medium.woff') format('woff'),
-                 url('fonts/MyFont-Medium.ttf') format('truetype');
-            font-weight: 500;
+            font-family: 'Chair406';
+            src: url('fonts/Chair406-Regular.otf') format('otf');
+            font-weight: 400;
             font-style: normal;
             font-display: swap;
         }
-        
+    
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +32,7 @@
             overflow: hidden;
             position: relative;
             display: flex;
-            font-family: 'MyFont', Arial, sans-serif;
+            font-family: 'Chair406', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
         
         .info-panel {
@@ -250,7 +247,7 @@
                     this.style.color = '#d87093';
                     this.style.fontSize = '24px';
                     this.style.fontWeight = '600';
-                    this.style.fontFamily = "'MyFont', sans-serif";
+                    this.style.fontFamily = "'Chair406', sans-serif";
                     this.textContent = slideData.title;
                 };
                 imageContainer.appendChild(img);
@@ -273,68 +270,3 @@
         }
         
         function updateSlider() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            updateDots();
-            updateInfoPanel();
-        }
-        
-        function updateInfoPanel() {
-            const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
-            const slideData = posterSlides[realIndex] || posterSlides[0];
-            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
-        }
-        
-        function updateDots() {
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
-                dot.classList.toggle('active', index === realIndex);
-            });
-        }
-        
-        function moveSlide(direction) {
-            pauseAutoScroll();
-            currentIndex += direction;
-            if (currentIndex > slideCount) currentIndex = 1;
-            else if (currentIndex < 1) currentIndex = slideCount;
-            updateSlider();
-            setTimeout(resumeAutoScroll, 1000);
-        }
-        
-        function goToSlide(n) {
-            currentIndex = n;
-            pauseAutoScroll();
-            updateSlider();
-            setTimeout(resumeAutoScroll, 2000);
-        }
-        
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(() => {
-                if (!isPaused) moveSlide(1);
-            }, 8000);
-        }
-        
-        function pauseAutoScroll() {
-            isPaused = true;
-            clearInterval(autoScrollInterval);
-        }
-        
-        function resumeAutoScroll() {
-            isPaused = false;
-            startAutoScroll();
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            initSlider();
-            document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
-            document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
-            document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
-            document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
-            
-            document.querySelectorAll('.dot').forEach(dot => {
-                dot.addEventListener('mouseenter', pauseAutoScroll);
-                dot.addEventListener('mouseleave', resumeAutoScroll);
-            });
-        });
-    </script>
-</body>
-</html>
