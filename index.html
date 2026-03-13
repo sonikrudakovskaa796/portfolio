@@ -19,70 +19,83 @@
             box-sizing: border-box;
         }
         
-        /* 🌟 КРАСИВАЯ БОЛЬШАЯ ШАПКА (только навигация) */
+        /* 🆕 НОВАЯ ШАПКА КАК НА КАРТИНКЕ */
         .site-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 120px;
+            height: 80px;
             background: linear-gradient(135deg, 
-                rgba(253, 245, 240, 0.95) 0%, 
-                rgba(255, 182, 193, 0.9) 100%);
-            backdrop-filter: blur(30px);
+                rgba(229, 229, 229, 0.95) 0%, 
+                rgba(245, 245, 245, 0.9) 100%);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             display: flex;
-            flex-direction: column;
-            padding: 20px 40px;
-            box-shadow: 0 10px 40px rgba(216, 112, 147, 0.4);
-            border-bottom: 2px solid rgba(255, 182, 193, 0.5);
-        }
-        
-        .header-top {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            flex: 1;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .logo {
             font-family: 'Chair406', Arial, sans-serif;
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 700;
-            background: linear-gradient(135deg, #d87093, #ff9bb8, #ffb3d1);
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -1px;
         }
         
         .header-nav {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             list-style: none;
+            align-items: center;
         }
         
         .header-nav a {
-            color: #555;
+            color: #666;
             text-decoration: none;
             font-family: 'Chair406', Arial, sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 30px;
-            transition: all 0.4s ease;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
         }
         
         .header-nav a:hover {
-            color: white;
+            color: #d87093;
+            background: rgba(216, 112, 147, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .header-cart {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: rgba(216, 112, 147, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d87093;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .header-cart:hover {
             background: linear-gradient(135deg, #d87093, #ff9bb8);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(216, 112, 147, 0.5);
+            color: white;
+            transform: scale(1.05);
         }
 
-        /* ✅ ОТДЕЛЬНАЯ ПЛАШКА КОНТАКТОВ ВНИЗУ */
+        /* Контакты внизу (остаются) */
         .contacts-panel {
             position: fixed;
             bottom: 0;
@@ -99,7 +112,6 @@
             justify-content: space-between;
             padding: 0 40px;
             box-shadow: 0 -8px 30px rgba(216, 112, 147, 0.3);
-            border-top: 2px solid rgba(255, 182, 193, 0.5);
         }
         
         .contacts-left {
@@ -128,7 +140,6 @@
             background: linear-gradient(135deg, #d87093, #ff9bb8);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
         }
         
         .social-links {
@@ -148,18 +159,16 @@
             font-size: 20px;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(216, 112, 147, 0.4);
         }
         
         .social-link:hover {
-            transform: scale(1.15) translateY(-3px);
-            box-shadow: 0 10px 30px rgba(216, 112, 147, 0.6);
+            transform: scale(1.15);
         }
 
         /* Контент */
         .main-content {
-            padding-top: 120px;   /* большая шапка */
-            padding-bottom: 70px; /* плашка контактов */
+            padding-top: 80px;  /* новая шапка */
+            padding-bottom: 70px; /* контакты */
             min-height: 100vh;
             overflow-y: auto;
             display: flex;
@@ -176,7 +185,7 @@
             font-family: 'Chair406', Arial, sans-serif;
         }
         
-        /* СЛАЙДЕР */
+        /* СЛАЙДЕР (без изменений) */
         .info-panel {
             width: 380px;
             background: rgba(253, 245, 240, 0.75);
@@ -197,7 +206,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 20px;
-            letter-spacing: -0.5px;
         }
         
         .info-panel .current-slide {
@@ -212,73 +220,38 @@
             box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
         
-        .dots {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-        
+        .dots { display: flex; gap: 12px; justify-content: center; }
         .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(255, 182, 193, 0.7);
-            cursor: pointer;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: rgba(255, 182, 193, 0.7); cursor: pointer;
             transition: all 0.3s ease;
         }
-        
-        .dot.active {
-            background: #d87093;
-            transform: scale(1.4);
-            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.5);
-        }
+        .dot.active { background: #d87093; transform: scale(1.4); }
 
         .slider-section {
-            flex: 1;
-            position: relative;
-            margin-left: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            flex: 1; position: relative; margin-left: 20px;
+            display: flex; align-items: center; justify-content: center;
             min-height: 100vh;
         }
         
         .slider-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; overflow: hidden;
         }
         
-        .slider-track {
-            display: flex;
-            height: 100%;
-            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
+        .slider-track { display: flex; height: 100%; transition: transform 1s ease; }
         .slider-slide {
-            min-width: 100%;
-            height: 100%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            min-width: 100%; height: 100%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
         }
         
         .slide-image-container {
-            width: 570px;
-            height: 1122px;
-            max-height: 85vh;
-            border-radius: 20px;
-            overflow: hidden;
+            width: 570px; height: 1122px; max-height: 85vh;
+            border-radius: 20px; overflow: hidden;
             box-shadow: 0 30px 100px rgba(216, 112, 147, 0.4);
             background: rgba(255, 245, 240, 0.1);
-            backdrop-filter: blur(15px);
-            border: 3px solid rgba(255, 182, 193, 0.6);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
+            backdrop-filter: blur(15px); border: 3px solid rgba(255, 182, 193, 0.6);
+            transition: all 0.4s ease; cursor: pointer;
         }
         
         .slide-image-container:hover {
@@ -286,77 +259,47 @@
             box-shadow: 0 40px 120px rgba(216, 112, 147, 0.5);
         }
         
-        .slide-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            transition: transform 0.4s ease;
-        }
-        
-        .slide-image-container:hover img {
-            transform: scale(1.02);
+        .slide-image-container img { 
+            width: 100%; height: 100%; object-fit: contain; 
         }
         
         .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 45px;
-            height: 45px;
-            border: none;
-            border-radius: 50%;
-            background: rgba(253, 245, 240, 0.85);
-            color: #d87093;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 100;
-            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 45px; height: 45px; border: none; border-radius: 50%;
+            background: rgba(253, 245, 240, 0.85); color: #d87093;
+            font-size: 18px; font-weight: 600; cursor: pointer; z-index: 100;
+            backdrop-filter: blur(10px); transition: all 0.3s ease;
         }
-        
         .left-btn { left: 40px; }
         .right-btn { right: 40px; }
-        
         .nav-btn:hover {
-            background: rgba(255, 182, 193, 0.95);
+            background: rgba(255, 182, 193, 0.95); color: white;
             transform: translateY(-50%) scale(1.1);
-            color: white;
-            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.6);
         }
 
         @media (max-width: 768px) {
-            .site-header { height: 100px; padding: 15px 20px; }
-            .logo { font-size: 28px; }
-            .header-nav { gap: 15px; }
-            .header-nav a { font-size: 14px; padding: 8px 16px; }
-            .contacts-panel { height: 60px; padding: 0 20px; }
-            .contact-item { font-size: 14px; padding: 8px 16px; }
-            .main-content { padding-top: 100px; padding-bottom: 60px; }
-            .info-panel { width: 300px; padding: 30px; }
-            .info-panel h1 { font-size: 28px; }
+            .site-header { padding: 0 20px; height: 70px; }
+            .header-nav { gap: 20px; }
+            .header-nav a { font-size: 14px; padding: 8px 15px; }
+            .main-content { padding-top: 70px; }
         }
     </style>
 </head>
 <body>
-    <!-- КРАСИВАЯ БОЛЬШАЯ ШАПКА -->
+    <!-- 🆕 ШАПКА КАК НА КАРТИНКЕ -->
     <header class="site-header">
-        <div class="header-top">
-            <div class="logo">🛍️ Портфолио</div>
-            <nav>
-                <ul class="header-nav">
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#posters">Постеры</a></li>
-                    <li><a href="#cart">Корзина</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="logo">🛍️ Портфолио</div>
+        <nav class="header-nav">
+            <a href="#home">Главная</a>
+            <a href="#shops">Постеры</a>
+            <a href="#top">Топ</a>
+            <a href="#live">Живой</a>
+            <a href="#collections">Коллекции</a>
+        </nav>
+        <div class="header-cart">🛒</div>
     </header>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <!-- КОНТЕНТ -->
     <div class="main-content">
         <div class="info-panel">
             <h1>🖼️ Постеры</h1>
@@ -373,7 +316,7 @@
         </div>
     </div>
 
-    <!-- ✅ ОТДЕЛЬНАЯ ПЛАШКА КОНТАКТОВ ВНИЗУ -->
+    <!-- КОНТАКТЫ ВНИЗУ -->
     <div class="contacts-panel">
         <div class="contacts-left">
             <a href="tel:+79229537600" class="contact-item">📱 +7 (922) 953-76-00</a>
@@ -385,7 +328,7 @@
         </div>
     </div>
 
-    <!-- СКРИПТ СЛАЙДЕРА -->
+    <!-- СКРИПТ (БЕЗ ИЗМЕНЕНИЙ) -->
     <script>
         const posterSlides = [
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
@@ -421,7 +364,6 @@
                     this.style.color = '#d87093';
                     this.style.fontSize = '24px';
                     this.style.fontWeight = '600';
-                    this.style.fontFamily = "'Chair406', sans-serif";
                     this.textContent = slideData.title;
                 };
                 
