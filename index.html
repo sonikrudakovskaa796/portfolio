@@ -35,6 +35,7 @@
             flex-direction: column;
             padding: 20px 40px;
             box-shadow: 0 10px 40px rgba(216, 112, 147, 0.4);
+            border-bottom: 2px solid rgba(255, 182, 193, 0.5);
         }
         
         .header-top {
@@ -81,7 +82,7 @@
             box-shadow: 0 10px 30px rgba(216, 112, 147, 0.5);
         }
 
-        /* 🆗 ОТДЕЛЬНАЯ ПЛАШКА КОНТАКТОВ ВНИЗУ */
+        /* ✅ ОТДЕЛЬНАЯ ПЛАШКА КОНТАКТОВ ВНИЗУ */
         .contacts-panel {
             position: fixed;
             bottom: 0;
@@ -174,8 +175,8 @@
             background-attachment: fixed;
             font-family: 'Chair406', Arial, sans-serif;
         }
-
-        /* Слайдер (без изменений) */
+        
+        /* СЛАЙДЕР */
         .info-panel {
             width: 380px;
             background: rgba(253, 245, 240, 0.75);
@@ -185,6 +186,7 @@
             flex-direction: column;
             justify-content: center;
             box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
+            flex-shrink: 0;
         }
         
         .info-panel h1 {
@@ -195,6 +197,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
         
         .info-panel .current-slide {
@@ -209,59 +212,136 @@
             box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
         
-        .dots { display: flex; gap: 12px; justify-content: center; }
+        .dots {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        
         .dot {
-            width: 14px; height: 14px; border-radius: 50%;
-            background: rgba(255, 182, 193, 0.7); cursor: pointer;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.7);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-        .dot.active { background: #d87093; transform: scale(1.4); }
+        
+        .dot.active {
+            background: #d87093;
+            transform: scale(1.4);
+            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.5);
+        }
 
         .slider-section {
-            flex: 1; position: relative; margin-left: 20px;
-            display: flex; align-items: center; justify-content: center;
+            flex: 1;
+            position: relative;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
         }
         
         .slider-container {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
         
-        .slider-track { display: flex; height: 100%; transition: transform 1s ease; }
+        .slider-track {
+            display: flex;
+            height: 100%;
+            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
         .slider-slide {
-            min-width: 100%; height: 100%; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
+            min-width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .slide-image-container {
-            width: 570px; height: 1122px; max-height: 85vh;
-            border-radius: 20px; overflow: hidden;
+            width: 570px;
+            height: 1122px;
+            max-height: 85vh;
+            border-radius: 20px;
+            overflow: hidden;
             box-shadow: 0 30px 100px rgba(216, 112, 147, 0.4);
             background: rgba(255, 245, 240, 0.1);
-            backdrop-filter: blur(15px); border: 3px solid rgba(255, 182, 193, 0.6);
-            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 182, 193, 0.6);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
         }
         
-        .slide-image-container img { width: 100%; height: 100%; object-fit: contain; }
+        .slide-image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 120px rgba(216, 112, 147, 0.5);
+        }
+        
+        .slide-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+        
+        .slide-image-container:hover img {
+            transform: scale(1.02);
+        }
         
         .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 45px; height: 45px; border: none; border-radius: 50%;
-            background: rgba(253, 245, 240, 0.85); color: #d87093;
-            font-size: 18px; font-weight: 600; cursor: pointer; z-index: 100;
-            backdrop-filter: blur(10px); transition: all 0.3s ease;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(253, 245, 240, 0.85);
+            color: #d87093;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
+        
         .left-btn { left: 40px; }
         .right-btn { right: 40px; }
+        
         .nav-btn:hover {
-            background: rgba(255, 182, 193, 0.95); color: white;
+            background: rgba(255, 182, 193, 0.95);
             transform: translateY(-50%) scale(1.1);
+            color: white;
+            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .site-header { height: 100px; padding: 15px 20px; }
+            .logo { font-size: 28px; }
+            .header-nav { gap: 15px; }
+            .header-nav a { font-size: 14px; padding: 8px 16px; }
+            .contacts-panel { height: 60px; padding: 0 20px; }
+            .contact-item { font-size: 14px; padding: 8px 16px; }
+            .main-content { padding-top: 100px; padding-bottom: 60px; }
+            .info-panel { width: 300px; padding: 30px; }
+            .info-panel h1 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-    <!-- 🌟 КРАСИВАЯ БОЛЬШАЯ ШАПКА (только навигация) -->
+    <!-- КРАСИВАЯ БОЛЬШАЯ ШАПКА -->
     <header class="site-header">
         <div class="header-top">
             <div class="logo">🛍️ Портфолио</div>
@@ -273,12 +353,155 @@
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
-        7</div>
+        </div>
     </header>
 
-    <!-- Контент -->
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
     <div class="main-content">
         <div class="info-panel">
             <h1>🖼️ Постеры</h1>
             <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
-           
+            <div class="dots" id="dotsContainer"></div>
+        </div>
+        
+        <div class="slider-section">
+            <div class="slider-container">
+                <div class="slider-track" id="sliderTrack"></div>
+            </div>
+            <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
+            <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
+        </div>
+    </div>
+
+    <!-- ✅ ОТДЕЛЬНАЯ ПЛАШКА КОНТАКТОВ ВНИЗУ -->
+    <div class="contacts-panel">
+        <div class="contacts-left">
+            <a href="tel:+79229537600" class="contact-item">📱 +7 (922) 953-76-00</a>
+            <a href="mailto:rudakovskayasx@gmail.com" class="contact-item">✉️ rudakovskayasx@gmail.com</a>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link">📱</a>
+            <a href="#" class="social-link">📘</a>
+        </div>
+    </div>
+
+    <!-- СКРИПТ СЛАЙДЕРА -->
+    <script>
+        const posterSlides = [
+            {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
+            {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
+            {image: 'постер merry chrismas.png', title: 'Merry Christmas', price: '1 390 ₽'},
+            {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
+        ];
+
+        const track = document.getElementById('sliderTrack');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const currentSlideInfo = document.getElementById('currentSlideInfo');
+        let currentIndex = 1;
+        let slideCount = posterSlides.length;
+        let autoScrollInterval;
+        let isPaused = false;
+
+        function initSlider() {
+            posterSlides.forEach((slideData, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-slide';
+                
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'slide-image-container';
+                const img = document.createElement('img');
+                img.src = slideData.image;
+                img.alt = slideData.title;
+                
+                img.onerror = function() {
+                    this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
+                    this.style.display = 'flex';
+                    this.style.alignItems = 'center';
+                    this.style.justifyContent = 'center';
+                    this.style.color = '#d87093';
+                    this.style.fontSize = '24px';
+                    this.style.fontWeight = '600';
+                    this.style.fontFamily = "'Chair406', sans-serif";
+                    this.textContent = slideData.title;
+                };
+                
+                imageContainer.appendChild(img);
+                slide.appendChild(imageContainer);
+                track.appendChild(slide);
+                
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.onclick = () => goToSlide(index + 1);
+                dotsContainer.appendChild(dot);
+            });
+            
+            const firstClone = track.firstElementChild.cloneNode(true);
+            const lastClone = track.lastElementChild.cloneNode(true);
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, track.firstElementChild);
+            
+            updateSlider();
+            startAutoScroll();
+        }
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
+            updateInfoPanel();
+        }
+
+        function updateInfoPanel() {
+            const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+            const slideData = posterSlides[realIndex] || posterSlides[0];
+            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
+        }
+
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+                dot.classList.toggle('active', index === realIndex);
+            });
+        }
+
+        function moveSlide(direction) {
+            pauseAutoScroll();
+            currentIndex += direction;
+            if (currentIndex > slideCount) currentIndex = 1;
+            if (currentIndex < 1) currentIndex = slideCount;
+            updateSlider();
+            setTimeout(resumeAutoScroll, 2000);
+        }
+
+        function goToSlide(n) {
+            currentIndex = n;
+            pauseAutoScroll();
+            updateSlider();
+            setTimeout(resumeAutoScroll, 2000);
+        }
+
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                if (!isPaused) moveSlide(1);
+            }, 6000);
+        }
+
+        function pauseAutoScroll() {
+            isPaused = true;
+            clearInterval(autoScrollInterval);
+        }
+
+        function resumeAutoScroll() {
+            isPaused = false;
+            startAutoScroll();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initSlider();
+            document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
+        });
+    </script>
+</body>
+</html>
