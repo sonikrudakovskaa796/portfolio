@@ -19,17 +19,17 @@
             box-sizing: border-box;
         }
 
-        /* 🎨 ФИОЛЕТОВАЯ ТЕМА #CE9DFF */
+        /* 🌸 ПАСТЕЛЬНАЯ ФИОЛЕТОВАЯ ТЕМА */
         :root {
             --main-color: #CE9DFF;
-            --main-dark: #B57DE6;
-            --accent-light: #E6C7FF;
-            --bg-light: #F8F5FF;
-            --shadow-color: rgba(206, 157, 255, 0.4);
-            --text-dark: #555;
+            --main-light: #E0B8FF;
+            --accent: #F1E8FF;
+            --bg-light: #FDFAFF;
+            --shadow-color: rgba(206, 157, 255, 0.25);
+            --text-dark: #6B5B95;
         }
 
-        /* ШАПКА КАК НА КАРТИНКЕ */
+        /* ШАПКА */
         .site-header {
             position: fixed;
             top: 0;
@@ -37,8 +37,8 @@
             width: 100%;
             height: 80px;
             background: linear-gradient(135deg, 
-                rgba(248, 245, 255, 0.95) 0%, 
-                rgba(230, 210, 255, 0.9) 100%);
+                rgba(253, 250, 255, 0.95) 0%, 
+                rgba(225, 200, 255, 0.9) 100%);
             backdrop-filter: blur(20px);
             z-index: 1000;
             display: flex;
@@ -53,7 +53,7 @@
             font-family: 'Chair406', Arial, sans-serif;
             font-size: 28px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--main-color), var(--accent-light));
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -75,38 +75,37 @@
             font-weight: 600;
             padding: 12px 25px;
             border-radius: 30px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(206, 157, 255, 0.15);
             backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid transparent;
+            border: 2px solid rgba(206, 157, 255, 0.2);
         }
         
         .header-nav a:hover {
             color: white;
-            background: linear-gradient(135deg, var(--main-color), var(--main-dark));
-            transform: translateY(-3px);
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
+            transform: translateY(-2px);
             box-shadow: 0 10px 30px var(--shadow-color);
-            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         .header-cart {
             width: 55px;
             height: 55px;
             border-radius: 20px;
-            background: linear-gradient(135deg, var(--main-color), var(--main-dark));
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 22px;
             cursor: pointer;
-            box-shadow: 0 8px 25px var(--shadow-color);
+            box-shadow: 0 5px 15px var(--shadow-color);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .header-cart:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(206, 157, 255, 0.6);
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 15px 35px rgba(206, 157, 255, 0.4);
         }
 
         /* ФУТЕР */
@@ -114,7 +113,7 @@
             padding: 60px 50px 40px;
             background: linear-gradient(135deg, 
                 var(--bg-light) 0%, 
-                rgba(206, 157, 255, 0.9) 100%);
+                rgba(206, 157, 255, 0.8) 100%);
             backdrop-filter: blur(25px);
             text-align: center;
             box-shadow: 0 -4px 20px var(--shadow-color);
@@ -140,14 +139,14 @@
             text-decoration: none;
             padding: 18px 35px;
             border-radius: 40px;
-            background: linear-gradient(135deg, var(--main-color), var(--main-dark));
-            box-shadow: 0 10px 30px var(--shadow-color);
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
+            box-shadow: 0 8px 25px var(--shadow-color);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .contact-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(206, 157, 255, 0.6);
+            box-shadow: 0 20px 45px rgba(206, 157, 255, 0.4);
         }
         
         .social-links {
@@ -160,23 +159,23 @@
             width: 55px;
             height: 55px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--main-color), var(--main-dark));
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 24px;
             text-decoration: none;
-            box-shadow: 0 8px 25px var(--shadow-color);
+            box-shadow: 0 5px 15px var(--shadow-color);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .social-link:hover {
-            transform: scale(1.2) translateY(-8px);
-            box-shadow: 0 20px 40px rgba(206, 157, 255, 0.7);
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(206, 157, 255, 0.4);
         }
 
-        /* ОСНОВНОЙ КОНТЕНТ */
+        /* КОНТЕНТ */
         .main-content {
             padding-top: 80px;
             min-height: calc(100vh - 200px);
@@ -186,7 +185,7 @@
         
         body {
             background: 
-                linear-gradient(135deg, rgba(206, 157, 255, 0.7) 0%, rgba(248, 245, 255, 0.5) 100%),
+                linear-gradient(135deg, rgba(206, 157, 255, 0.6) 0%, rgba(253, 250, 255, 0.7) 100%),
                 url("pink_background.jpg");
             background-size: cover;
             background-position: center;
@@ -198,7 +197,7 @@
         /* ИНФО-ПАНЕЛЬ */
         .info-panel {
             width: 380px;
-            background: rgba(248, 245, 255, 0.85);
+            background: rgba(253, 250, 255, 0.9);
             backdrop-filter: blur(20px);
             padding: 40px;
             display: flex;
@@ -211,7 +210,7 @@
         .info-panel h1 {
             font-size: 36px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--main-color), var(--accent-light));
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -224,7 +223,7 @@
             font-weight: 500;
             color: var(--text-dark);
             margin-bottom: 50px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.8);
             padding: 18px 25px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
@@ -242,16 +241,16 @@
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            background: rgba(206, 157, 255, 0.5);
+            background: rgba(206, 157, 255, 0.4);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(206, 157, 255, 0.2);
         }
         
         .dot.active {
-            background: linear-gradient(135deg, var(--main-color), var(--main-dark));
-            transform: scale(1.5);
-            box-shadow: 0 0 20px rgba(206, 157, 255, 0.6);
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
+            transform: scale(1.4);
+            box-shadow: 0 0 15px rgba(206, 157, 255, 0.5);
         }
 
         /* СЛАЙДЕР */
@@ -296,9 +295,9 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 30px 100px var(--shadow-color);
-            background: rgba(248, 245, 255, 0.2);
+            background: rgba(253, 250, 255, 0.3);
             backdrop-filter: blur(15px);
-            border: 3px solid rgba(206, 157, 255, 0.6);
+            border: 3px solid rgba(206, 157, 255, 0.5);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
@@ -313,14 +312,9 @@
             height: 100%;
             object-fit: contain;
             object-position: center;
-            transition: transform 0.4s ease;
-        }
-        
-        .slide-image-container:hover img {
-            transform: scale(1.02);
         }
 
-        /* 🆕 КРУТЫЕ ФИОЛЕТОВЫЕ КНОПКИ */
+        /* ПАСТЕЛЬНЫЕ КНОПКИ */
         .nav-btn {
             position: absolute;
             top: 50%;
@@ -329,15 +323,13 @@
             height: 55px;
             border: none;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--main-color), var(--main-dark));
+            background: linear-gradient(135deg, var(--main-color), var(--main-light));
             color: white;
             font-size: 20px;
             font-weight: 700;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 
-                0 8px 25px var(--shadow-color),
-                0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+            box-shadow: 0 5px 20px var(--shadow-color);
             backdrop-filter: blur(15px);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -346,11 +338,8 @@
         .right-btn { right: 40px; }
         
         .nav-btn:hover {
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 
-                0 15px 40px rgba(206, 157, 255, 0.6),
-                0 0 30px rgba(206, 157, 255, 0.4);
-            background: linear-gradient(135deg, var(--main-dark), var(--main-color));
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 10px 30px rgba(206, 157, 255, 0.4);
         }
 
         /* АДАПТИВ */
@@ -366,7 +355,7 @@
     </style>
 </head>
 <body>
-    <!-- ШАПКА КАК НА КАРТИНКЕ -->
+    <!-- ШАПКА -->
     <header class="site-header">
         <div class="logo">🛍️ Портфолио</div>
         <nav class="header-nav">
@@ -396,7 +385,7 @@
         </div>
     </div>
 
-    <!-- ФУТЕР С КОНТАКТАМИ -->
+    <!-- ФУТЕР -->
     <footer class="site-footer">
         <div class="footer-contacts">
             <a href="tel:+79229537600" class="contact-item">📱 +7 (922) 953-76-00</a>
@@ -409,7 +398,7 @@
         </div>
     </footer>
 
-    <!-- СКРИПТ СЛАЙДЕРА -->
+    <!-- СКРИПТ -->
     <script>
         const posterSlides = [
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
@@ -438,14 +427,13 @@
                 img.alt = slideData.title;
                 
                 img.onerror = function() {
-                    this.style.background = 'linear-gradient(135deg, var(--bg-light), var(--accent-light))';
+                    this.style.background = 'linear-gradient(135deg, var(--bg-light), var(--accent))';
                     this.style.display = 'flex';
                     this.style.alignItems = 'center';
                     this.style.justifyContent = 'center';
                     this.style.color = var(--main-color);
                     this.style.fontSize = '24px';
                     this.style.fontWeight = '600';
-                    this.style.fontFamily = "'Chair406', sans-serif";
                     this.textContent = slideData.title;
                 };
                 
