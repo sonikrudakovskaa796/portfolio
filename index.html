@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио - Дизайнер</title>
+    <title>Постеры - Слайдер</title>
     <style>
         /* ШРИФТ CHAIR 406 */
         @font-face {
@@ -19,241 +19,141 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
+            height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(253, 240, 235, 0.5) 100%),
+                url("pink_background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
             font-family: 'Chair406', Arial, sans-serif;
-            background: linear-gradient(135deg, rgba(210, 180, 140, 0.7) 0%, rgba(255, 248, 240, 0.6) 100%);
-            overflow-x: hidden;
         }
 
-        /* НАВИГАЦИЯ */
-        .nav-container {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            background: rgba(255, 248, 240, 0.95);
-            backdrop-filter: blur(20px);
+        /* 🌸 ОСТРОВОК НАВИГАЦИИ СВЕРХУ */
+        .top-nav {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(253, 245, 240, 0.95);
+            backdrop-filter: blur(25px);
+            padding: 15px 35px;
+            border-radius: 50px;
+            box-shadow: 0 15px 40px rgba(216, 112, 147, 0.3);
+            border: 2px solid rgba(255, 182, 193, 0.4);
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(210, 180, 140, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .nav-content {
             display: flex;
+            gap: 30px;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 50px;
-            height: 100%;
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #D2B48C, #F5DEB3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: #8B7355;
+        .nav-item {
+            color: #d87093;
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
-            padding: 12px 25px;
-            border-radius: 30px;
-            background: rgba(210, 180, 140, 0.15);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(210, 180, 140, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 182, 193, 0.15);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(216, 112, 147, 0.3);
         }
 
-        .nav-link.active {
+        .nav-item:hover {
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
             color: white;
-            background: linear-gradient(135deg, #D2B48C, #F5DEB3);
-            box-shadow: 0 10px 30px rgba(210, 180, 140, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(216, 112, 147, 0.4);
         }
 
-        .scroll-hint {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #8B7355;
-            font-size: 18px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* СТРАНИЦЫ */
-        .page {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            position: relative;
-            scroll-snap-align: start;
-        }
-
-        /* СТРАНИЦА 1 - ОБО МНЕ */
-        .about-page {
-            background: linear-gradient(135deg, rgba(210, 180, 140, 0.8) 0%, rgba(255, 248, 240, 0.9) 100%);
-        }
-
-        .about-content {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 50px;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 1;
-            max-width: 600px;
-        }
-
-        .about-text h1 {
-            font-size: 48px;
+        .logo-nav {
+            font-size: 20px;
             font-weight: 700;
-            background: linear-gradient(135deg, #D2B48C, #F5DEB3);
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 30px;
-            line-height: 1.2;
         }
-
-        .about-text p {
-            font-size: 20px;
-            color: #8B7355;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .skill-item {
-            background: rgba(255, 248, 240, 0.8);
-            padding: 20px 25px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(210, 180, 140, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(210, 180, 140, 0.3);
-        }
-
-        .about-image {
-            flex: 1;
-            max-width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(210, 180, 140, 0.3), rgba(245, 222, 179, 0.2));
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(15px);
-            border: 3px solid rgba(210, 180, 140, 0.3);
-        }
-
-        /* СТРАНИЦА 2 - ПОСТЕРЫ */
-        .posters-page {
-            background: linear-gradient(135deg, rgba(210, 180, 140, 0.7) 0%, rgba(255, 248, 240, 0.6) 100%);
-        }
-
-        .posters-content {
-            display: flex;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 50px;
-            gap: 60px;
-        }
-
-        .posters-info {
+        
+        .info-panel {
             width: 380px;
-            background: rgba(255, 248, 240, 0.85);
+            background: rgba(253, 245, 240, 0.75);
             backdrop-filter: blur(20px);
             padding: 40px;
-            border-radius: 30px;
-            box-shadow: 5px 0 30px rgba(210, 180, 140, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
+            z-index: 10;
+            position: relative;
+            margin-top: 80px;
         }
-
-        .posters-info h1 {
-            font-size: 42px;
+        
+        .info-panel h1 {
+            font-size: 36px;
             font-weight: 700;
-            background: linear-gradient(135deg, #D2B48C, #F5DEB3);
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
-
-        .current-slide {
+        
+        .info-panel .current-slide {
             font-size: 20px;
             font-weight: 500;
-            color: #8B7355;
+            color: #555;
             margin-bottom: 50px;
-            background: rgba(255, 248, 240, 0.9);
-            padding: 20px 25px;
+            background: rgba(255, 245, 240, 0.85);
+            padding: 18px 25px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(210, 180, 140, 0.25);
+            box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
-
+        
         .dots {
             display: flex;
+            flex-direction: row;
             gap: 12px;
             justify-content: center;
+            margin-top: 20px;
         }
-
+        
         .dot {
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background: rgba(210, 180, 140, 0.7);
+            background: rgba(255, 182, 193, 0.7);
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
+        
         .dot.active {
-            background: #D2B48C;
+            background: #d87093;
             transform: scale(1.4);
-            box-shadow: 0 4px 15px rgba(210, 180, 140, 0.5);
+            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.5);
         }
 
-        .posters-slider {
+        .slider-section {
             flex: 1;
             position: relative;
+            margin-left: 20px;
+            padding-right: 50px;
+            padding-bottom: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
+            margin-top: 80px;
         }
-
+        
         .slider-container {
             position: absolute;
             top: 0;
@@ -262,47 +162,55 @@
             height: 100%;
             overflow: hidden;
         }
-
+        
         .slider-track {
             display: flex;
             height: 100%;
             transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
-
+        
         .slider-slide {
             min-width: 100%;
             height: 100%;
             flex-shrink: 0;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding-right: 20px;
         }
-
+        
         .slide-image-container {
             width: 570px;
             height: 1122px;
             max-height: 85vh;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 30px 100px rgba(210, 180, 140, 0.4);
-            background: rgba(255, 248, 240, 0.15);
+            box-shadow: 0 30px 100px rgba(216, 112, 147, 0.4);
+            background: rgba(255, 245, 240, 0.1);
             backdrop-filter: blur(15px);
-            border: 3px solid rgba(210, 180, 140, 0.6);
-            transition: all 0.4s ease;
+            border: 3px solid rgba(255, 182, 193, 0.6);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
-
+        
         .slide-image-container:hover {
             transform: scale(1.02);
-            box-shadow: 0 40px 120px rgba(210, 180, 140, 0.5);
+            box-shadow: 0 40px 120px rgba(216, 112, 147, 0.5);
         }
-
+        
         .slide-image-container img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            object-position: center;
+            transition: transform 0.4s ease;
         }
-
+        
+        .slide-image-container:hover img {
+            transform: scale(1.02);
+        }
+        
         .nav-btn {
             position: absolute;
             top: 50%;
@@ -311,150 +219,83 @@
             height: 45px;
             border: none;
             border-radius: 50%;
-            background: rgba(255, 248, 240, 0.9);
-            color: #D2B48C;
+            background: rgba(253, 245, 240, 0.85);
+            color: #d87093;
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(210, 180, 140, 0.4);
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
-
+        
         .left-btn { left: 40px; }
         .right-btn { right: 40px; }
-
+        
         .nav-btn:hover {
-            background: rgba(210, 180, 140, 0.95);
-            color: white;
+            background: rgba(255, 182, 193, 0.95);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 12px 35px rgba(210, 180, 140, 0.6);
+            color: white;
+            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.6);
         }
 
-        /* ПРОКРУТКА */
-        html {
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-        }
-
-        /* АДАПТИВ */
         @media (max-width: 768px) {
-            .nav-content { padding: 0 20px; }
-            .nav-menu { gap: 15px; }
-            .nav-link { font-size: 14px; padding: 8px 15px; }
-            .logo { font-size: 24px; }
-            
-            .about-content,
-            .posters-content { 
+            .top-nav {
                 flex-direction: column;
-                padding: 0 20px;
-                gap: 40px;
+                gap: 15px;
+                padding: 20px 25px;
             }
-            
-            .about-text h1 { font-size: 36px; }
-            .posters-info { width: 100%; }
+            .dots { gap: 10px; }
+            .dot { width: 12px; height: 12px; }
+            .info-panel { width: 300px; padding: 30px; margin-top: 120px; }
+            .info-panel h1 { font-size: 28px; }
+            .slider-section { margin-top: 120px; }
         }
     </style>
 </head>
 <body>
-    <!-- НАВИГАЦИЯ -->
-    <div class="nav-container">
-        <div class="nav-content">
-            <div class="logo" onclick="scrollToTop()">🛍️ Портфолио</div>
-            <ul class="nav-menu">
-                <li><a href="#" class="nav-link active" onclick="scrollToSection(0)">Обо мне</a></li>
-                <li><a href="#" class="nav-link" onclick="scrollToSection(1)">Постеры</a></li>
-            </ul>
-        </div>
+    <!-- 🌸 ОСТРОВОК НАВИГАЦИИ СВЕРХУ -->
+    <div class="top-nav">
+        <div class="logo-nav">🛍️ Портфолио</div>
+        <a href="#" class="nav-item" onclick="alert('Страница "Обо мне" в разработке!')">Обо мне</a>
+        <a href="#" class="nav-item">Постеры</a>
     </div>
 
-    <!-- СТРАНИЦА 1 - ОБО МНЕ -->
-    <section class="page about-page" id="section1">
-        <div class="about-content">
-            <div class="about-text">
-                <h1>Привет! Я дизайнер постеров</h1>
-                <p>Создаю стильные и современные постеры для вашего пространства. Каждую работу делаю с душой, используя трендовые цвета и композиции.</p>
-                <p>Люблю работать с пастельными тонами, минимализмом и акцентами, которые цепляют взгляд.</p>
-                <div class="skills-grid">
-                    <div class="skill-item">🎨 Графический дизайн</div>
-                    <div class="skill-item">✨ Цветовая гармония</div>
-                    <div class="skill-item">📱 Адаптивный дизайн</div>
-                    <div class="skill-item">⚡ Быстрое выполнение</div>
-                </div>
-            </div>
-            <div class="about-image">
-                <div style="font-size: 120px;">🖼️</div>
-            </div>
+    <div class="info-panel">
+        <h1>🖼️ Постеры</h1>
+        <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
+        <div class="dots" id="dotsContainer"></div>
+    </div>
+    
+    <div class="slider-section">
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack"></div>
         </div>
-        <div class="scroll-hint">⬇️ Листай вниз для постеров</div>
-    </section>
-
-    <!-- СТРАНИЦА 2 - ПОСТЕРЫ -->
-    <section class="page posters-page" id="section2">
-        <div class="posters-content">
-            <div class="posters-info">
-                <h1>🖼️ Постеры</h1>
-                <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
-                <div class="dots" id="dotsContainer"></div>
-            </div>
-            
-            <div class="posters-slider">
-                <div class="slider-container">
-                    <div class="slider-track" id="sliderTrack"></div>
-                </div>
-                <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
-                <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
-            </div>
-        </div>
-    </section>
+        <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
+        <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
+    </div>
 
     <script>
-        // ПРОКРУТКА
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function scrollToSection(sectionIndex) {
-            document.getElementById(`section${sectionIndex + 1}`).scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        // НАВИГАЦИЯ ПРИ ПРОКРУТКЕ
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.page');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            sections.forEach((section, index) => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top <= 100 && rect.bottom >= 100) {
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    navLinks[index].classList.add('active');
-                }
-            });
-        });
-
         // ДАННЫЕ ПОСТЕРОВ
         const posterSlides = [
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
             {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
-            {image: 'постер merry chrismas.png', title: 'Merry Christmas', price: '1 390 ₽'},
+            {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
             {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
         ];
 
-        // СЛАЙДЕР
+        // ЭЛЕМЕНТЫ
+        const track = document.getElementById('sliderTrack');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const currentSlideInfo = document.getElementById('currentSlideInfo');
         let currentIndex = 1;
         let slideCount = posterSlides.length;
         let autoScrollInterval;
         let isPaused = false;
-        let sliderInitialized = false;
 
+        // ИНИЦИАЛИЗАЦИЯ
         function initSlider() {
-            const track = document.getElementById('sliderTrack');
-            const dotsContainer = document.getElementById('dotsContainer');
-            const currentSlideInfo = document.getElementById('currentSlideInfo');
-
             posterSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
@@ -467,13 +308,14 @@
                 img.alt = slideData.title;
                 
                 img.onerror = function() {
-                    this.style.background = 'linear-gradient(135deg, #FFF8F0, #FAF0E6)';
+                    this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
                     this.style.display = 'flex';
                     this.style.alignItems = 'center';
                     this.style.justifyContent = 'center';
-                    this.style.color = '#D2B48C';
+                    this.style.color = '#d87093';
                     this.style.fontSize = '24px';
                     this.style.fontWeight = '600';
+                    this.style.fontFamily = "'Chair406', sans-serif";
                     this.textContent = slideData.title;
                 };
                 
@@ -494,11 +336,9 @@
             
             updateSlider();
             startAutoScroll();
-            sliderInitialized = true;
         }
 
         function updateSlider() {
-            const track = document.getElementById('sliderTrack');
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateDots();
             updateInfoPanel();
@@ -507,7 +347,7 @@
         function updateInfoPanel() {
             const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
             const slideData = posterSlides[realIndex] || posterSlides[0];
-            document.getElementById('currentSlideInfo').textContent = `${slideData.title} • ${slideData.price}`;
+            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
         }
 
         function updateDots() {
@@ -549,25 +389,13 @@
             startAutoScroll();
         }
 
-        // ИНИЦИАЛИЗАЦИЯ ПРИ ПРОКРУТКЕ НА ВТОРУЮ СТРАНИЦУ
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.id === 'section2' && !sliderInitialized) {
-                    initSlider();
-                }
-            });
-        }, { threshold: 0.5 });
-
         document.addEventListener('DOMContentLoaded', function() {
-            observer.observe(document.getElementById('section2'));
+            initSlider();
             
-            // ПАУЗА НА КНОПКАХ
-            document.addEventListener('click', (e) => {
-                if (e.target.classList.contains('nav-btn')) {
-                    pauseAutoScroll();
-                    setTimeout(resumeAutoScroll, 2000);
-                }
-            });
+            document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
+            document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
         });
     </script>
 </body>
