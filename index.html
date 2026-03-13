@@ -21,7 +21,7 @@
         }
         
         body {
-            height: 100vh;
+            min-height: 100vh;
             background: 
                 linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(253, 240, 235, 0.5) 100%),
                 url("pink_background.jpg");
@@ -29,7 +29,6 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -81,19 +80,37 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* МАЙН КОНТЕЙНЕР */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
+            min-height: calc(100vh - 100px);
+        }
+        
+        .slider-wrapper {
+            display: flex;
+            max-width: 1600px;
+            width: 100%;
+            gap: 40px;
+            align-items: center;
+        }
         
         .info-panel {
             width: 380px;
+            flex-shrink: 0;
             background: rgba(253, 245, 240, 0.75);
             backdrop-filter: blur(20px);
             padding: 40px;
+            border-radius: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
             z-index: 10;
-            position: relative;
-            margin-top: 80px;
         }
         
         .info-panel h1 {
@@ -145,13 +162,11 @@
         .slider-section {
             flex: 1;
             position: relative;
-            margin-left: 20px;
-            padding-right: 50px;
-            padding-bottom: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 80px;
+            height: 80vh;
+            max-width: 1000px;
         }
         
         .slider-container {
@@ -177,7 +192,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-right: 20px;
         }
         
         .slide-image-container {
@@ -246,11 +260,21 @@
                 gap: 15px;
                 padding: 20px 25px;
             }
+            .slider-wrapper {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .info-panel { 
+                width: 100%; 
+                max-width: 350px;
+                order: 2;
+            }
+            .slider-section { 
+                order: 1;
+                height: 60vh;
+            }
             .dots { gap: 10px; }
             .dot { width: 12px; height: 12px; }
-            .info-panel { width: 300px; padding: 30px; margin-top: 120px; }
-            .info-panel h1 { font-size: 28px; }
-            .slider-section { margin-top: 120px; }
         }
     </style>
 </head>
@@ -262,18 +286,23 @@
         <a href="#" class="nav-item">Постеры</a>
     </div>
 
-    <div class="info-panel">
-        <h1>🖼️ Постеры</h1>
-        <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
-        <div class="dots" id="dotsContainer"></div>
-    </div>
-    
-    <div class="slider-section">
-        <div class="slider-container">
-            <div class="slider-track" id="sliderTrack"></div>
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
+    <div class="main-content">
+        <div class="slider-wrapper">
+            <div class="info-panel">
+                <h1>🖼️ Постеры</h1>
+                <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
+                <div class="dots" id="dotsContainer"></div>
+            </div>
+            
+            <div class="slider-section">
+                <div class="slider-container">
+                    <div class="slider-track" id="sliderTrack"></div>
+                </div>
+                <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
+                <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
+            </div>
         </div>
-        <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
-        <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
     </div>
 
     <script>
@@ -285,7 +314,6 @@
             {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
         ];
 
-        // ЭЛЕМЕНТЫ
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
@@ -294,7 +322,6 @@
         let autoScrollInterval;
         let isPaused = false;
 
-        // ИНИЦИАЛИЗАЦИЯ
         function initSlider() {
             posterSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
