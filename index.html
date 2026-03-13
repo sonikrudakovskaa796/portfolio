@@ -20,7 +20,7 @@
             box-sizing: border-box;
         }
         
-        /* 🆕 ШАПКА САЙТА */
+        /* ШАПКА */
         .site-header {
             position: fixed;
             top: 0;
@@ -83,11 +83,79 @@
         .header-nav a:hover::after {
             width: 100%;
         }
+
+        /* 🆕 НОЖКА (КОНТАКТЫ) */
+        .site-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(253, 245, 240, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 -4px 25px rgba(216, 112, 147, 0.2);
+            border-top: 1px solid rgba(255, 182, 193, 0.3);
+        }
         
-        /* ОСНОВНОЙ КОНТЕНТ С ОТСТУПОМ ОТ ШАПКИ */
+        .footer-contacts {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            font-family: 'Chair406', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            color: #d87093;
+            transform: translateY(-1px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d87093;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #d87093;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* ОСНОВНОЙ КОНТЕНТ */
         .main-content {
-            padding-top: 70px; /* высота шапки */
-            height: calc(100vh - 70px);
+            padding-top: 70px;  /* шапка */
+            padding-bottom: 80px; /* ножка */
+            min-height: 100vh;
+            overflow-y: auto; /* ✅ прокрутка сайта */
             display: flex;
         }
         
@@ -99,11 +167,10 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            overflow: hidden;
-            position: relative;
             font-family: 'Chair406', Arial, sans-serif;
         }
         
+        /* Остальной CSS слайдера */
         .info-panel {
             width: 380px;
             background: rgba(253, 245, 240, 0.75);
@@ -115,8 +182,10 @@
             box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
             z-index: 10;
             position: relative;
+            flex-shrink: 0;
         }
         
+        /* ... весь остальной CSS слайдера БЕЗ ИЗМЕНЕНИЙ ... */
         .info-panel h1 {
             font-size: 36px;
             font-weight: 700;
@@ -128,7 +197,6 @@
             letter-spacing: -0.5px;
         }
         
-        /* Остальной CSS без изменений */
         .info-panel .current-slide {
             font-size: 20px;
             font-weight: 500;
@@ -173,8 +241,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
         }
         
+        /* Остальные стили слайдера остаются ТЕМ ЖЕ */
         .slider-container {
             position: absolute;
             top: 0;
@@ -266,17 +336,18 @@
             .dot { width: 12px; height: 12px; }
             .info-panel { width: 300px; padding: 30px; }
             .info-panel h1 { font-size: 28px; }
-            .site-header { padding: 0 20px; }
+            .site-header, .site-footer { padding: 0 20px; }
             .logo { font-size: 24px; }
             .header-nav { gap: 20px; }
             .header-nav a { font-size: 14px; }
+            .footer-contacts { gap: 15px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
-    <!-- 🆕 ШАПКА САЙТА -->
+    <!-- ШАПКА -->
     <header class="site-header">
-        <div class="logo">Портфолио</div>
+        <div class="logo">MyShop</div>
         <nav>
             <ul class="header-nav">
                 <li><a href="#home">Главная</a></li>
@@ -305,7 +376,21 @@
         </div>
     </div>
 
-    <!-- СКРИПТ БЕЗ ИЗМЕНЕНИЙ -->
+    <!-- 🆕 НОЖКА С КОНТАКТАМИ -->
+    <footer class="site-footer">
+        <div class="footer-contacts">
+            <a href="tel:+79991234567" class="contact-item">📱 +7 (999) 123-45-67</a>
+            <a href="mailto:info@myshop.ru" class="contact-item">✉️ info@myshop.ru</a>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link">📘</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">📱</a>
+            <a href="#" class="social-link">🐦</a>
+        </div>
+    </footer>
+
+    <!-- СКРИПТ СЛАЙДЕРА -->
     <script>
         const posterSlides = [
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
