@@ -20,8 +20,78 @@
             box-sizing: border-box;
         }
         
+        /* 🆕 ШАПКА САЙТА */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(253, 245, 240, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 4px 25px rgba(216, 112, 147, 0.2);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+        }
+        
+        .logo {
+            font-family: 'Chair406', Arial, sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .header-nav a {
+            color: #555;
+            text-decoration: none;
+            font-family: 'Chair406', Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .header-nav a:hover {
+            color: #d87093;
+            transform: translateY(-2px);
+        }
+        
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
+            transition: width 0.3s ease;
+        }
+        
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* ОСНОВНОЙ КОНТЕНТ С ОТСТУПОМ ОТ ШАПКИ */
+        .main-content {
+            padding-top: 70px; /* высота шапки */
+            height: calc(100vh - 70px);
+            display: flex;
+        }
+        
         body {
-            height: 100vh;
             background: 
                 linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(253, 240, 235, 0.5) 100%),
                 url("pink_background.jpg");
@@ -31,7 +101,6 @@
             background-attachment: fixed;
             overflow: hidden;
             position: relative;
-            display: flex;
             font-family: 'Chair406', Arial, sans-serif;
         }
         
@@ -59,6 +128,7 @@
             letter-spacing: -0.5px;
         }
         
+        /* Остальной CSS без изменений */
         .info-panel .current-slide {
             font-size: 20px;
             font-weight: 500;
@@ -196,26 +266,47 @@
             .dot { width: 12px; height: 12px; }
             .info-panel { width: 300px; padding: 30px; }
             .info-panel h1 { font-size: 28px; }
+            .site-header { padding: 0 20px; }
+            .logo { font-size: 24px; }
+            .header-nav { gap: 20px; }
+            .header-nav a { font-size: 14px; }
         }
     </style>
 </head>
 <body>
-    <div class="info-panel">
-        <h1>🖼️ Постеры</h1>
-        <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
-        <div class="dots" id="dotsContainer"></div>
-    </div>
-    
-    <div class="slider-section">
-        <div class="slider-container">
-            <div class="slider-track" id="sliderTrack"></div>
+    <!-- 🆕 ШАПКА САЙТА -->
+    <header class="site-header">
+        <div class="logo">Портфолио</div>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#posters">Постеры</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#cart">Корзина</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="main-content">
+        <div class="info-panel">
+            <h1>🖼️ Постеры</h1>
+            <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
+            <div class="dots" id="dotsContainer"></div>
         </div>
-        <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
-        <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
+        
+        <div class="slider-section">
+            <div class="slider-container">
+                <div class="slider-track" id="sliderTrack"></div>
+            </div>
+            <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
+            <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
+        </div>
     </div>
 
+    <!-- СКРИПТ БЕЗ ИЗМЕНЕНИЙ -->
     <script>
-        // ДАННЫЕ ПОСТЕРОВ
         const posterSlides = [
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
             {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
@@ -223,7 +314,6 @@
             {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
         ];
 
-        // ЭЛЕМЕНТЫ
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
@@ -232,21 +322,17 @@
         let autoScrollInterval;
         let isPaused = false;
 
-        // ИНИЦИАЛИЗАЦИЯ
         function initSlider() {
             posterSlides.forEach((slideData, index) => {
-                // СОЗДАЕМ СЛАЙД
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
                 
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'slide-image-container';
-                
                 const img = document.createElement('img');
                 img.src = slideData.image;
                 img.alt = slideData.title;
                 
-                // FALLBACK ЕСЛИ КАРТИНКА НЕ ЗАГРУЗИЛАСЬ
                 img.onerror = function() {
                     this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
                     this.style.display = 'flex';
@@ -263,14 +349,12 @@
                 slide.appendChild(imageContainer);
                 track.appendChild(slide);
                 
-                // СОЗДАЕМ ТОЧКИ
                 const dot = document.createElement('div');
                 dot.className = 'dot';
                 dot.onclick = () => goToSlide(index + 1);
                 dotsContainer.appendChild(dot);
             });
             
-            // БЕСКОНЕЧНЫЙ ЦИКЛ - КЛОНИРУЕМ ПЕРВЫЙ И ПОСЛЕДНИЙ
             const firstClone = track.firstElementChild.cloneNode(true);
             const lastClone = track.lastElementChild.cloneNode(true);
             track.appendChild(firstClone);
@@ -280,21 +364,18 @@
             startAutoScroll();
         }
 
-        // ОБНОВЛЕНИЕ СЛАЙДЕРА
         function updateSlider() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateDots();
             updateInfoPanel();
         }
 
-        // ИНФО ПАНЕЛЬ
         function updateInfoPanel() {
             const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
             const slideData = posterSlides[realIndex] || posterSlides[0];
             currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
         }
 
-        // ТОЧКИ
         function updateDots() {
             document.querySelectorAll('.dot').forEach((dot, index) => {
                 const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
@@ -302,7 +383,6 @@
             });
         }
 
-        // ПЕРЕМЕЩЕНИЕ
         function moveSlide(direction) {
             pauseAutoScroll();
             currentIndex += direction;
@@ -312,7 +392,6 @@
             setTimeout(resumeAutoScroll, 2000);
         }
 
-        // ПРЯМОЙ ПЕРЕХОД
         function goToSlide(n) {
             currentIndex = n;
             pauseAutoScroll();
@@ -320,7 +399,6 @@
             setTimeout(resumeAutoScroll, 2000);
         }
 
-        // АВТОПРОКРУТКА
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
@@ -337,11 +415,8 @@
             startAutoScroll();
         }
 
-        // ЗАПУСК
         document.addEventListener('DOMContentLoaded', function() {
             initSlider();
-            
-            // ПАУЗА НА КНОПКАХ
             document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
