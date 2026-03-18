@@ -21,7 +21,7 @@
         }
         
         body {
-            min-height: 100vh;
+            height: 100vh;
             background: 
                 linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(253, 240, 235, 0.5) 100%),
                 url("pink_background.jpg");
@@ -29,88 +29,23 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            overflow: hidden;
             position: relative;
             display: flex;
-            flex-direction: column;
             font-family: 'Chair406', Arial, sans-serif;
-        }
-
-        /* 🌸 ОСТРОВОК НАВИГАЦИИ СВЕРХУ */
-        .top-nav {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(253, 245, 240, 0.95);
-            backdrop-filter: blur(25px);
-            padding: 15px 35px;
-            border-radius: 50px;
-            box-shadow: 0 15px 40px rgba(216, 112, 147, 0.3);
-            border: 2px solid rgba(255, 182, 193, 0.4);
-            z-index: 1000;
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-item {
-            color: #d87093;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: rgba(255, 182, 193, 0.15);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(216, 112, 147, 0.3);
-        }
-
-        .nav-item:hover {
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(216, 112, 147, 0.4);
-        }
-
-        .logo-nav {
-            font-size: 20px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* МАЙН КОНТЕЙНЕР */
-        .main-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 20px 80px;
-            min-height: calc(100vh - 100px);
-        }
-        
-        .slider-wrapper {
-            display: flex;
-            max-width: 1600px;
-            width: 100%;
-            gap: 40px;
-            align-items: center;
         }
         
         .info-panel {
             width: 380px;
-            flex-shrink: 0;
             background: rgba(253, 245, 240, 0.75);
             backdrop-filter: blur(20px);
             padding: 40px;
-            border-radius: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
             z-index: 10;
+            position: relative;
         }
         
         .info-panel h1 {
@@ -162,11 +97,12 @@
         .slider-section {
             flex: 1;
             position: relative;
+            margin-left: 20px;
+            padding-right: 50px;
+            padding-bottom: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 80vh;
-            max-width: 1000px;
         }
         
         .slider-container {
@@ -192,6 +128,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding-right: 20px;
         }
         
         .slide-image-container {
@@ -255,54 +192,26 @@
         }
 
         @media (max-width: 768px) {
-            .top-nav {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px 25px;
-            }
-            .slider-wrapper {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .info-panel { 
-                width: 100%; 
-                max-width: 350px;
-                order: 2;
-            }
-            .slider-section { 
-                order: 1;
-                height: 60vh;
-            }
             .dots { gap: 10px; }
             .dot { width: 12px; height: 12px; }
+            .info-panel { width: 300px; padding: 30px; }
+            .info-panel h1 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-    <!-- 🌸 ОСТРОВОК НАВИГАЦИИ СВЕРХУ -->
-    <div class="top-nav">
-        <div class="logo-nav">🛍️ Портфолио</div>
-        <a href="#" class="nav-item" onclick="alert('Страница "Обо мне" в разработке!')">Обо мне</a>
-        <a href="#" class="nav-item">Постеры</a>
+    <div class="info-panel">
+        <h1>🖼️ Постеры</h1>
+        <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
+        <div class="dots" id="dotsContainer"></div>
     </div>
-
-    <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
-    <div class="main-content">
-        <div class="slider-wrapper">
-            <div class="info-panel">
-                <h1>🖼️ Постеры</h1>
-                <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
-                <div class="dots" id="dotsContainer"></div>
-            </div>
-            
-            <div class="slider-section">
-                <div class="slider-container">
-                    <div class="slider-track" id="sliderTrack"></div>
-                </div>
-                <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
-                <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
-            </div>
+    
+    <div class="slider-section">
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack"></div>
         </div>
+        <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
+        <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
     </div>
 
     <script>
@@ -314,6 +223,7 @@
             {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
         ];
 
+        // ЭЛЕМЕНТЫ
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
@@ -322,8 +232,10 @@
         let autoScrollInterval;
         let isPaused = false;
 
+        // ИНИЦИАЛИЗАЦИЯ
         function initSlider() {
             posterSlides.forEach((slideData, index) => {
+                // СОЗДАЕМ СЛАЙД
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
                 
@@ -334,6 +246,7 @@
                 img.src = slideData.image;
                 img.alt = slideData.title;
                 
+                // FALLBACK ЕСЛИ КАРТИНКА НЕ ЗАГРУЗИЛАСЬ
                 img.onerror = function() {
                     this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
                     this.style.display = 'flex';
@@ -350,12 +263,14 @@
                 slide.appendChild(imageContainer);
                 track.appendChild(slide);
                 
+                // СОЗДАЕМ ТОЧКИ
                 const dot = document.createElement('div');
                 dot.className = 'dot';
                 dot.onclick = () => goToSlide(index + 1);
                 dotsContainer.appendChild(dot);
             });
             
+            // БЕСКОНЕЧНЫЙ ЦИКЛ - КЛОНИРУЕМ ПЕРВЫЙ И ПОСЛЕДНИЙ
             const firstClone = track.firstElementChild.cloneNode(true);
             const lastClone = track.lastElementChild.cloneNode(true);
             track.appendChild(firstClone);
@@ -365,18 +280,21 @@
             startAutoScroll();
         }
 
+        // ОБНОВЛЕНИЕ СЛАЙДЕРА
         function updateSlider() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateDots();
             updateInfoPanel();
         }
 
+        // ИНФО ПАНЕЛЬ
         function updateInfoPanel() {
             const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
             const slideData = posterSlides[realIndex] || posterSlides[0];
             currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
         }
 
+        // ТОЧКИ
         function updateDots() {
             document.querySelectorAll('.dot').forEach((dot, index) => {
                 const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
@@ -384,6 +302,7 @@
             });
         }
 
+        // ПЕРЕМЕЩЕНИЕ
         function moveSlide(direction) {
             pauseAutoScroll();
             currentIndex += direction;
@@ -393,6 +312,7 @@
             setTimeout(resumeAutoScroll, 2000);
         }
 
+        // ПРЯМОЙ ПЕРЕХОД
         function goToSlide(n) {
             currentIndex = n;
             pauseAutoScroll();
@@ -400,6 +320,7 @@
             setTimeout(resumeAutoScroll, 2000);
         }
 
+        // АВТОПРОКРУТКА
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
@@ -416,9 +337,11 @@
             startAutoScroll();
         }
 
+        // ЗАПУСК
         document.addEventListener('DOMContentLoaded', function() {
             initSlider();
             
+            // ПАУЗА НА КНОПКАХ
             document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
