@@ -111,12 +111,12 @@
             margin-bottom: 25px;
         }
 
-        /* СЕКЦИЯ ПОСТЕРЫ - ОТДЕЛЬНЫЙ ФОН */
+        /* СЕКЦИЯ ПОСТЕРЫ - СИЛЬНО ОТЛИЧНЫЙ ФОН */
         .posters-section {
             min-height: 100vh;
             padding: 120px 50px 200px;
             background: 
-                linear-gradient(135deg, rgba(255, 182, 193, 0.85) 0%, rgba(255, 218, 227, 0.7) 50%, rgba(253, 240, 235, 0.6) 100%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%),
                 url("posters_background.jpg");
             background-size: cover;
             background-position: center;
@@ -134,7 +134,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 245, 240, 0.3);
+            background: rgba(102, 126, 234, 0.85);
             border-radius: 50px;
             z-index: 1;
         }
@@ -144,26 +144,27 @@
             z-index: 2;
         }
         
+        /* АДАПТАЦИЯ ЦВЕТОВ ДЛЯ ТЕМНОГО ФОНА */
         .info-panel {
             width: 450px;
-            background: rgba(253, 245, 240, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(25px);
             padding: 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 8px 0 50px rgba(255, 182, 193, 0.5);
+            box-shadow: 8px 0 50px rgba(0, 0, 0, 0.3);
             z-index: 10;
             position: relative;
             margin-right: 50px;
             border-radius: 35px;
-            border: 3px solid rgba(255, 182, 193, 0.6);
+            border: 3px solid rgba(255, 255, 255, 0.8);
         }
         
         .info-panel h1 {
             font-size: 44px;
             font-weight: 700;
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -174,14 +175,14 @@
         .info-panel .current-slide {
             font-size: 28px;
             font-weight: 700;
-            color: #555;
+            color: #333;
             margin-bottom: 70px;
-            background: rgba(255, 245, 240, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             padding: 30px 35px;
             border-radius: 30px;
             backdrop-filter: blur(20px);
-            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.4);
-            border: 3px solid rgba(255, 182, 193, 0.4);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.6);
         }
         
         .dots {
@@ -196,16 +197,16 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: rgba(255, 182, 193, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255, 182, 193, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.6);
         }
         
         .dot.active {
-            background: #d87093;
+            background: #667eea;
             transform: scale(1.6);
-            box-shadow: 0 6px 25px rgba(216, 112, 147, 0.7);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.7);
         }
 
         .slider-section {
@@ -248,17 +249,17 @@
             height: 1122px;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 40px 140px rgba(216, 112, 147, 0.6);
-            background: rgba(255, 245, 240, 0.2);
+            box-shadow: 0 40px 140px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(20px);
-            border: 4px solid rgba(255, 182, 193, 0.8);
+            border: 4px solid rgba(255, 255, 255, 0.9);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
         
         .slide-image-container:hover {
             transform: scale(1.03);
-            box-shadow: 0 50px 160px rgba(216, 112, 147, 0.7);
+            box-shadow: 0 50px 160px rgba(0, 0, 0, 0.5);
             border-radius: 30px;
         }
         
@@ -283,26 +284,26 @@
             height: 55px;
             border: none;
             border-radius: 50%;
-            background: rgba(253, 245, 240, 0.95);
-            color: #d87093;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
             font-size: 22px;
             font-weight: 800;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 12px 40px rgba(216, 112, 147, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
-            border: 3px solid rgba(255, 182, 193, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.8);
         }
         
         .left-btn { left: 25px; }
         .right-btn { right: 25px; }
         
         .nav-btn:hover {
-            background: rgba(255, 182, 193, 0.98);
+            background: rgba(102, 126, 234, 0.95);
             transform: translateY(-50%) scale(1.2);
             color: white;
-            box-shadow: 0 20px 50px rgba(216, 112, 147, 0.8);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6);
         }
 
         /* КОНТАКТЫ */
@@ -432,192 +433,13 @@
     <!-- НАВИГАЦИЯ -->
     <nav class="navigation">
         <a href="#about" class="nav-link active" onclick="setActiveNav('about')">Обо мне</a>
-        <a href="#posters" class="nav-link" onclick="setActiveNav('posters')">Постеры</a>
+        <a href="#posters" class="nav-link" onclick="setActiveNav('posters')">🖼️ Постеры</a>
         <a href="#contacts" class="nav-link" onclick="setActiveNav('contacts')">Контакты</a>
     </nav>
 
     <!-- СЕКЦИЯ ОБО МНЕ -->
     <section id="about" class="about-section">
         <div class="about-content">
-            <h1>Привет!</h1>
+            <h1>👋 Привет!</h1>
             <p>Я Софья — дизайнер, который превращает идеи в красивые и функциональные цифровые продукты.</p>
-            <p>Создаю сайты, логотипы и другие элементы визуальной коммуникации, которые помогают бизнесу привлекать клиентов и увеличивать продажи.</p>
-        </div>
-    </section>
-
-    <!-- СЕКЦИЯ ПОСТЕРЫ -->
-    <section id="posters" class="posters-section">
-        <div class="info-panel">
-            <h1>Постеры</h1>
-            <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
-            <div class="dots" id="dotsContainer"></div>
-        </div>
-        
-        <div class="slider-section">
-            <div class="slider-container">
-                <div class="slider-track" id="sliderTrack"></div>
-            </div>
-            <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
-            <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
-        </div>
-    </section>
-
-    <!-- КОНТАКТЫ -->
-    <section id="contacts" class="contacts-section">
-        <div class="contacts-panel">
-            <h2>Свяжитесь со мной</h2>
-            <p>Готова воплотить ваши идеи в красивые цифровые продукты!</p>
-            <div class="contacts-links">
-                <a href="mailto:rudakovskayasx@gmail.com" class="contact-link">✉️ rudakovskayasx@gmail.com</a>
-                <a href="tel:+79229537600" class="contact-link">📱 +7 92295376600</a>
-                <a href="https://t.me/sofia_design" class="contact-link">💬 Telegram: @ssrwqf</a>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // ДАННЫЕ ПОСТЕРОВ
-        const posterSlides = [
-            {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
-            {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
-            {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
-            {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
-        ];
-
-        // СЛАЙДЕР ЭЛЕМЕНТЫ
-        const track = document.getElementById('sliderTrack');
-        const dotsContainer = document.getElementById('dotsContainer');
-        const currentSlideInfo = document.getElementById('currentSlideInfo');
-        let currentIndex = 1;
-        let slideCount = posterSlides.length;
-        let autoScrollInterval;
-        let isPaused = false;
-
-        // ИНИЦИАЛИЗАЦИЯ СЛАЙДЕРА
-        function initSlider() {
-            posterSlides.forEach((slideData, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'slider-slide';
-                
-                const imageContainer = document.createElement('div');
-                imageContainer.className = 'slide-image-container';
-                
-                const img = document.createElement('img');
-                img.src = slideData.image;
-                img.alt = slideData.title;
-                
-                img.onerror = function() {
-                    this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
-                    this.style.display = 'flex';
-                    this.style.alignItems = 'center';
-                    this.style.justifyContent = 'center';
-                    this.style.color = '#d87093';
-                    this.style.fontSize = '32px';
-                    this.style.fontWeight = '700';
-                    this.style.fontFamily = "'Chair406', sans-serif";
-                    this.textContent = slideData.title;
-                };
-                
-                imageContainer.appendChild(img);
-                slide.appendChild(imageContainer);
-                track.appendChild(slide);
-                
-                const dot = document.createElement('div');
-                dot.className = 'dot';
-                dot.onclick = () => goToSlide(index + 1);
-                dotsContainer.appendChild(dot);
-            });
-            
-            const firstClone = track.firstElementChild.cloneNode(true);
-            const lastClone = track.lastElementChild.cloneNode(true);
-            track.appendChild(firstClone);
-            track.insertBefore(lastClone, track.firstElementChild);
-            
-            updateSlider();
-            startAutoScroll();
-        }
-
-        function updateSlider() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            updateDots();
-            updateInfoPanel();
-        }
-
-        function updateInfoPanel() {
-            const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
-            const slideData = posterSlides[realIndex] || posterSlides[0];
-            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
-        }
-
-        function updateDots() {
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
-                dot.classList.toggle('active', index === realIndex);
-            });
-        }
-
-        function moveSlide(direction) {
-            pauseAutoScroll();
-            currentIndex += direction;
-            if (currentIndex > slideCount) currentIndex = 1;
-            else if (currentIndex < 1) currentIndex = slideCount;
-            updateSlider();
-            setTimeout(resumeAutoScroll, 4000);
-        }
-
-        function goToSlide(n) {
-            currentIndex = n;
-            pauseAutoScroll();
-            updateSlider();
-            setTimeout(resumeAutoScroll, 4000);
-        }
-
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(() => {
-                if (!isPaused) moveSlide(1);
-            }, 8000);
-        }
-
-        function pauseAutoScroll() {
-            isPaused = true;
-            clearInterval(autoScrollInterval);
-        }
-
-        function resumeAutoScroll() {
-            isPaused = false;
-            startAutoScroll();
-        }
-
-        function setActiveNav(sectionId) {
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        window.addEventListener('scroll', () => {
-            const sections = ['about', 'posters', 'contacts'];
-            const scrollPos = window.scrollY + 100;
-
-            sections.forEach(section => {
-                const el = document.getElementById(section);
-                const navLink = document.querySelector(`[onclick="setActiveNav('${section}')"]`);
-                if (el.offsetTop <= scrollPos && scrollPos < el.offsetTop + el.offsetHeight) {
-                    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-                    navLink.classList.add('active');
-                }
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            initSlider();
-            
-            const sliderElements = document.querySelectorAll('.nav-btn, .dot, .slide-image-container');
-            sliderElements.forEach(el => {
-                el.addEventListener('mouseenter', pauseAutoScroll);
-                el.addEventListener('mouseleave', resumeAutoScroll);
-            });
-        });
-    </script>
-</body>
-</html>
+            <p>Создаю сайты, логотипы и другие элементы визуальной коммуникации,
