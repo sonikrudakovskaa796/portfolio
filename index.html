@@ -102,51 +102,64 @@
             padding-bottom: 80px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 30px;
+            justify-content: center;
         }
         
-        .slider-container {
-            position: relative;
-            width: 100%;
-            height: 30%;
-            overflow: hidden;
+        .about-section {
+            height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        .slider-track {
-            display: flex;
+        .about-container {
+            width: 570px;
             height: 100%;
-            width: 300%;
-            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .slider-slide {
-            min-width: 33.333%;
-            height: 100%;
-            flex-shrink: 0;
-            position: relative;
+            background: linear-gradient(135deg, rgba(255, 245, 240, 0.95) 0%, rgba(255, 182, 193, 0.9) 100%);
+            border-radius: 20px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-right: 20px;
+            text-align: center;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 182, 193, 0.6);
+            box-shadow: 0 30px 100px rgba(216, 112, 147, 0.4);
         }
         
-        .main-slider-container {
-            position: relative;
+        .about-container h2 {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d87093, #ff9bb8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .about-container p {
+            font-size: 22px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .poster-slider-container {
             flex: 1;
+            position: relative;
             overflow: hidden;
-            margin: 0 50px;
         }
         
-        .main-slider-track {
+        .poster-slider-track {
             display: flex;
             height: 100%;
             transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         
-        .main-slider-slide {
+        .poster-slide {
             min-width: 100%;
             height: 100%;
             flex-shrink: 0;
@@ -187,47 +200,43 @@
         .slide-image-container:hover img {
             transform: scale(1.02);
         }
-
-        /* ТЕКСТОВЫЕ СЛАЙДЫ */
-        .text-slide-container {
-            width: 570px;
+        
+        .contacts-section {
             height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-slide {
+            height: 90px;
             background: linear-gradient(135deg, rgba(255, 245, 240, 0.95) 0%, rgba(255, 182, 193, 0.9) 100%);
-            border-radius: 20px;
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px;
+            padding: 20px;
             backdrop-filter: blur(20px);
-            border: 3px solid rgba(255, 182, 193, 0.6);
-            box-shadow: 0 20px 60px rgba(216, 112, 147, 0.4);
+            border: 2px solid rgba(255, 182, 193, 0.6);
+            box-shadow: 0 15px 40px rgba(216, 112, 147, 0.3);
         }
         
-        .text-slide-container h2 {
-            font-size: 32px;
+        .contact-slide h3 {
+            font-size: 24px;
             font-weight: 700;
             background: linear-gradient(135deg, #d87093, #ff9bb8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
+            margin-bottom: 5px;
         }
         
-        .text-slide-container p {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-        
-        .contact-item {
+        .contact-slide p {
             font-size: 18px;
             color: #d87093;
             font-weight: 600;
-            margin: 10px 0;
         }
         
         .nav-btn {
@@ -249,8 +258,8 @@
             transition: all 0.3s ease;
         }
         
-        .main-left-btn { left: 40px; }
-        .main-right-btn { right: 40px; }
+        .poster-left-btn { left: 40px; }
+        .poster-right-btn { right: 40px; }
         
         .nav-btn:hover {
             background: rgba(255, 182, 193, 0.95);
@@ -275,48 +284,36 @@
     </div>
     
     <div class="slider-section">
-        <!-- ВЕРХНИЙ СЛАЙД "ОБО МНЕ" -->
-        <div class="slider-container" id="aboutSlider">
-            <div class="slider-track" id="aboutTrack">
-                <div class="slider-slide">
-                    <div class="text-slide-container">
-                        <h2>Обо мне</h2>
-                        <p>Frontend разработчик</p>
-                        <p>с страстью к дизайну</p>
-                        <p>и анимациям</p>
-                    </div>
-                </div>
+        <!-- ОСТРОВОК "ОБО МНЕ" СВЕРХУ -->
+        <div class="about-section">
+            <div class="about-container">
+                <h2>Обо мне</h2>
+                <p>Frontend разработчик</p>
+                <p>с страстью к дизайну</p>
+                <p>и анимациям</p>
             </div>
         </div>
 
-        <!-- ОСНОВНОЙ СЛАЙДЕР С ПОСТЕРАМИ -->
-        <div class="main-slider-container">
-            <div class="main-slider-track" id="mainSliderTrack"></div>
-            <button class="nav-btn main-left-btn" onclick="moveMainSlide(-1)">‹</button>
-            <button class="nav-btn main-right-btn" onclick="moveMainSlide(1)">›</button>
+        <!-- ОСНОВНОЙ СЛАЙДЕР ПОСТЕРОВ -->
+        <div class="poster-slider-container">
+            <div class="poster-slider-track" id="posterSliderTrack"></div>
+            <button class="nav-btn poster-left-btn" onclick="moveSlide(-1)">‹</button>
+            <button class="nav-btn poster-right-btn" onclick="moveSlide(1)">›</button>
         </div>
 
-        <!-- НИЖНИЕ СЛАЙДЫ КОНТАКТОВ -->
-        <div class="slider-container" id="contactsSlider">
-            <div class="slider-track" id="contactsTrack">
-                <div class="slider-slide">
-                    <div class="text-slide-container">
-                        <h2>Email</h2>
-                        <div class="contact-item">hello@design.ru</div>
-                    </div>
-                </div>
-                <div class="slider-slide">
-                    <div class="text-slide-container">
-                        <h2>Телефон</h2>
-                        <div class="contact-item">+7 (999) 123-45-67</div>
-                    </div>
-                </div>
-                <div class="slider-slide">
-                    <div class="text-slide-container">
-                        <h2>Telegram</h2>
-                        <div class="contact-item">@yourusername</div>
-                    </div>
-                </div>
+        <!-- КОНТАКТЫ НИЖЕ -->
+        <div class="contacts-section">
+            <div class="contact-slide">
+                <h3>Email</h3>
+                <p>hello@design.ru</p>
+            </div>
+            <div class="contact-slide">
+                <h3>Телефон</h3>
+                <p>+7 (999) 123-45-67</p>
+            </div>
+            <div class="contact-slide">
+                <h3>Telegram</h3>
+                <p>@yourusername</p>
             </div>
         </div>
     </div>
@@ -330,19 +327,20 @@
             {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
         ];
 
-        // ОСНОВНОЙ СЛАЙДЕР
-        const mainTrack = document.getElementById('mainSliderTrack');
+        // ЭЛЕМЕНТЫ
+        const track = document.getElementById('posterSliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
-        let currentMainIndex = 1;
-        let mainSlideCount = posterSlides.length;
+        let currentIndex = 1;
+        let slideCount = posterSlides.length;
         let autoScrollInterval;
+        let isPaused = false;
 
-        // ИНИЦИАЛИЗАЦИЯ ОСНОВНОГО СЛАЙДЕРА
-        function initMainSlider() {
+        // ИНИЦИАЛИЗАЦИЯ
+        function initSlider() {
             posterSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
-                slide.className = 'main-slider-slide';
+                slide.className = 'poster-slide';
                 
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'slide-image-container';
@@ -365,71 +363,81 @@
                 
                 imageContainer.appendChild(img);
                 slide.appendChild(imageContainer);
-                mainTrack.appendChild(slide);
+                track.appendChild(slide);
                 
                 const dot = document.createElement('div');
                 dot.className = 'dot';
-                dot.onclick = () => goToMainSlide(index + 1);
+                dot.onclick = () => goToSlide(index + 1);
                 dotsContainer.appendChild(dot);
             });
             
-            const firstClone = mainTrack.firstElementChild.cloneNode(true);
-            const lastClone = mainTrack.lastElementChild.cloneNode(true);
-            mainTrack.appendChild(firstClone);
-            mainTrack.insertBefore(lastClone, mainTrack.firstElementChild);
+            const firstClone = track.firstElementChild.cloneNode(true);
+            const lastClone = track.lastElementChild.cloneNode(true);
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, track.firstElementChild);
             
-            updateMainSlider();
+            updateSlider();
             startAutoScroll();
         }
 
-        function updateMainSlider() {
-            mainTrack.style.transform = `translateX(-${currentMainIndex * 100}%)`;
-            updateMainDots();
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
             updateInfoPanel();
         }
 
         function updateInfoPanel() {
-            const realIndex = ((currentMainIndex - 1 + mainSlideCount) % mainSlideCount);
+            const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
             const slideData = posterSlides[realIndex] || posterSlides[0];
             currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
         }
 
-        function updateMainDots() {
+        function updateDots() {
             document.querySelectorAll('.dot').forEach((dot, index) => {
-                const realIndex = ((currentMainIndex - 1 + mainSlideCount) % mainSlideCount);
+                const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
                 dot.classList.toggle('active', index === realIndex);
             });
         }
 
-        function moveMainSlide(direction) {
-            currentMainIndex += direction;
-            if (currentMainIndex > mainSlideCount) currentMainIndex = 1;
-            else if (currentMainIndex < 1) currentMainIndex = mainSlideCount;
-            updateMainSlider();
+        function moveSlide(direction) {
+            pauseAutoScroll();
+            currentIndex += direction;
+            if (currentIndex > slideCount) currentIndex = 1;
+            else if (currentIndex < 1) currentIndex = slideCount;
+            updateSlider();
+            setTimeout(resumeAutoScroll, 2000);
         }
 
-        function goToMainSlide(n) {
-            currentMainIndex = n;
-            updateMainSlider();
+        function goToSlide(n) {
+            currentIndex = n;
+            pauseAutoScroll();
+            updateSlider();
+            setTimeout(resumeAutoScroll, 2000);
         }
 
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
-                moveMainSlide(1);
+                if (!isPaused) moveSlide(1);
             }, 6000);
         }
 
-        // АВТОПАУЗА НА КНОПКАХ
+        function pauseAutoScroll() {
+            isPaused = true;
+            clearInterval(autoScrollInterval);
+        }
+
+        function resumeAutoScroll() {
+            isPaused = false;
+            startAutoScroll();
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            initMainSlider();
+            initSlider();
             
-            const leftBtn = document.querySelector('.main-left-btn');
-            const rightBtn = document.querySelector('.main-right-btn');
-            
-            leftBtn.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-            rightBtn.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-            leftBtn.addEventListener('mouseleave', startAutoScroll);
-            rightBtn.addEventListener('mouseleave', startAutoScroll);
+            document.querySelector('.poster-left-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.poster-right-btn').addEventListener('mouseenter', pauseAutoScroll);
+            document.querySelector('.poster-left-btn').addEventListener('mouseleave', resumeAutoScroll);
+            document.querySelector('.poster-right-btn').addEventListener('mouseleave', resumeAutoScroll);
         });
     </script>
 </body>
