@@ -87,7 +87,7 @@
             cursor: pointer;
         }
 
-        /* ОСНОВНОЙ КОНТЕЙНЕР */
+        /* ОСНОВНОЙ КОНТЕЙНЕР - ПЕРВАЯ СЕКЦИЯ */
         .main-content {
             flex: 1;
             display: flex;
@@ -97,65 +97,67 @@
             min-height: 100vh;
         }
 
-        /* СЕКЦИЯ ПОСТЕРЫ */
-        .posters-section {
+        /* СЕКЦИЯ ОБО МНЕ (ПЕРВАЯ) */
+        .about-section {
             display: flex;
             max-width: 1600px;
             width: 100%;
             gap: 50px;
             align-items: center;
         }
-        
+
         .info-panel {
-            width: 380px;
+            width: 420px;
             flex-shrink: 0;
-            background: rgba(253, 245, 240, 0.85);
+            background: rgba(253, 245, 240, 0.9);
             backdrop-filter: blur(25px);
-            padding: 45px;
-            border-radius: 35px;
+            padding: 55px;
+            border-radius: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 25px 60px rgba(255, 182, 193, 0.35);
+            box-shadow: 0 30px 70px rgba(255, 182, 193, 0.4);
             border: 2px solid rgba(255, 182, 193, 0.3);
             z-index: 10;
         }
         
         .info-panel h1 {
-            font-size: 38px;
+            font-size: 44px;
             font-weight: 700;
             background: linear-gradient(135deg, #d87093, #ff9bb8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 25px;
-            letter-spacing: -0.5px;
+            margin-bottom: 35px;
+            letter-spacing: -0.8px;
         }
         
         .info-panel .current-slide {
-            font-size: 21px;
-            font-weight: 500;
-            color: #666;
-            margin-bottom: 55px;
-            background: rgba(255, 245, 240, 0.9);
-            padding: 20px 28px;
-            border-radius: 25px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.25);
-            border: 1px solid rgba(255, 182, 193, 0.2);
+            font-size: 26px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 65px;
+            background: rgba(255, 245, 240, 0.95);
+            padding: 35px 40px;
+            border-radius: 35px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 45px rgba(216, 112, 147, 0.35);
+            border: 2px solid rgba(255, 182, 193, 0.25);
+            line-height: 1.4;
+            text-align: center;
         }
         
         .dots {
             display: flex;
             flex-direction: row;
-            gap: 14px;
+            gap: 16px;
             justify-content: center;
-            margin-top: 25px;
+            margin-top: 30px;
         }
         
         .dot {
-            width: 15px;
-            height: 15px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: rgba(255, 182, 193, 0.75);
             cursor: pointer;
@@ -165,29 +167,19 @@
         
         .dot.active {
             background: linear-gradient(135deg, #d87093, #ff9bb8);
-            transform: scale(1.5);
-            box-shadow: 0 6px 20px rgba(216, 112, 147, 0.6);
+            transform: scale(1.6);
+            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.65);
         }
 
-        .slider-section {
-            flex: 1;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 85vh;
-            max-width: 1000px;
-        }
-        
-        /* СЕКЦИЯ ОБО МНЕ */
-        .about-section {
+        /* СЕКЦИЯ ПОСТЕРЫ */
+        .posters-section {
             padding: 120px 20px;
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .about-content {
+        .posters-content {
             background: rgba(253, 245, 240, 0.9);
             backdrop-filter: blur(25px);
             padding: 60px;
@@ -196,7 +188,7 @@
             border: 2px solid rgba(255, 182, 193, 0.3);
         }
 
-        .about-content h1 {
+        .posters-content h1 {
             font-size: 42px;
             font-weight: 700;
             background: linear-gradient(135deg, #d87093, #ff9bb8);
@@ -206,7 +198,7 @@
             margin-bottom: 30px;
         }
 
-        .about-content p {
+        .posters-content p {
             font-size: 20px;
             color: #666;
             line-height: 1.7;
@@ -262,6 +254,16 @@
         }
         
         /* СЛАЙДЕР СТИЛИ */
+        .slider-section {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 85vh;
+            max-width: 1000px;
+        }
+        
         .slider-container {
             position: absolute;
             top: 0;
@@ -354,22 +356,26 @@
                 padding: 20px 30px;
                 top: 15px;
             }
-            .posters-section {
+            .about-section {
                 flex-direction: column;
                 gap: 35px;
             }
             .info-panel { 
                 width: 100%; 
-                max-width: 360px;
-                padding: 35px;
+                max-width: 380px;
+                padding: 45px;
             }
             .slider-section { 
                 height: 65vh;
             }
-            .info-panel h1 { font-size: 32px; }
-            .dots { gap: 12px; }
-            .dot { width: 13px; height: 13px; }
-            .about-content, .contacts-content {
+            .info-panel h1 { font-size: 36px; }
+            .info-panel .current-slide { 
+                font-size: 22px; 
+                padding: 28px 32px; 
+            }
+            .dots { gap: 14px; }
+            .dot { width: 16px; height: 16px; }
+            .posters-content, .contacts-content {
                 padding: 40px 30px;
             }
         }
@@ -378,18 +384,18 @@
 <body>
     <!-- 🌸 ОСТРОВОК НАВИГАЦИИ -->
     <div class="top-nav">
-        <div class="logo-nav" onclick="scrollToTop()">🛍️ Портфолио</div>
-        <a href="#about" class="nav-item" onclick="scrollToSection('about')">Обо мне</a>
-        <a href="#posters" class="nav-item active" onclick="scrollToSection('posters')">Постеры</a>
+        <div class="logo-nav" onclick="scrollToTop()">Портфолио</div>
+        <a href="#about" class="nav-item active" onclick="scrollToSection('about')">Обо мне</a>
+        <a href="#posters" class="nav-item" onclick="scrollToSection('posters')">Постеры</a>
         <a href="#contacts" class="nav-item" onclick="scrollToSection('contacts')">Контакты</a>
     </div>
 
-    <!-- ОСНОВНОЙ КОНТЕЙНЕР - ПОСТЕРЫ -->
-    <div class="main-content" id="posters">
-        <div class="posters-section">
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР - ОБО МНЕ (ПЕРВАЯ СЕКЦИЯ СО СЛАЙДЕРОМ) -->
+    <div class="main-content" id="about">
+        <div class="about-section">
             <div class="info-panel">
-                <h1>🖼️ Постеры</h1>
-                <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
+                <h1>Обо мне</h1>
+                <div class="current-slide" id="currentSlideInfo">Frontend разработчик • Дизайн + код</div>
                 <div class="dots" id="dotsContainer"></div>
             </div>
             
@@ -403,41 +409,40 @@
         </div>
     </div>
 
-    <!-- СЕКЦИЯ ОБО МНЕ -->
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <h1>👩‍💻 Обо мне</h1>
-            <p>Привет! Я frontend-разработчик с любовью к красивым интерфейсам и анимациям. Создаю стильные сайты с акцентом на типографику, цвета и плавные переходы.</p>
-            <p>Специализируюсь на HTML, CSS и JavaScript. Люблю превращать идеи в пиксели и создавать wow-эффекты для пользователей.</p>
+    <!-- СЕКЦИЯ ПОСТЕРЫ -->
+    <section class="posters-section" id="posters">
+        <div class="posters-content">
+            <h1>Постеры</h1>
+            <p> Я Софья — дизайнер, который превращает идеи в красивые и функциональные цифровые продукты.</p>
+            <p>Создаю сайты, логотипы и другие элементы визуальной коммуникации, которые помогают бизнесу привлекать клиентов и увеличивать продажи.</p>
         </div>
     </section>
 
     <!-- СЕКЦИЯ КОНТАКТЫ -->
     <section class="contacts-section" id="contacts">
         <div class="contacts-content">
-            <h1>📧 Контакты</h1>
+            <h1>Контакты</h1>
             <ul class="contacts-list">
-                <li>📱 Telegram: @yourusername</li>
-                <li>✉️ Email: hello@yourmail.com</li>
-                <li>💼 GitHub: github.com/yourprofile</li>
+                <li>📱 Telegram: @ssrwqf</li>
+                <li>✉️ Email: rudakovskayasx@gmail.com</li>
             </ul>
         </div>
     </section>
 
     <script>
-        // ДАННЫЕ ПОСТЕРОВ
-        const posterSlides = [
-            {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
-            {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
-            {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
-            {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
+        // ДАННЫЕ СЛАЙДОВ (теперь про навыки/портфолио)
+        const aboutSlides = [
+            {image: 'пляж3.jpg', title: 'Summer party', subtitle: 'Frontend разработчик'},
+            {image: 'постер 14 ф.png', title: "Valentine's day", subtitle: 'Дизайн + код'},
+            {image: 'постер merry chrismas.png', title: 'Merrry Christmas', subtitle: 'UI/UX дизайн'},
+            {image: 'плакат 1 (2).png', title: 'Постер', subtitle: 'Анимации JS'}
         ];
 
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
         let currentIndex = 1;
-        let slideCount = posterSlides.length;
+        let slideCount = aboutSlides.length;
         let autoScrollInterval;
         let isPaused = false;
 
@@ -458,34 +463,30 @@
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
-            if (activeSection === 'posters') {
-                document.querySelector('a[onclick="scrollToSection(\'posters\')"]').classList.add('active');
-            } else {
-                document.querySelector(`a[onclick="scrollToSection('${activeSection}')"]`).classList.add('active');
-            }
+            document.querySelector(`a[onclick="scrollToSection('${activeSection}')"]`).classList.add('active');
         }
 
         // Обработка прокрутки для активной навигации
         window.addEventListener('scroll', () => {
             const sections = {
-                posters: document.getElementById('posters').offsetTop,
                 about: document.getElementById('about').offsetTop,
+                posters: document.getElementById('posters').offsetTop,
                 contacts: document.getElementById('contacts').offsetTop
             };
             
             const scrollPos = window.scrollY + 100;
             
-            if (scrollPos < sections.about) {
-                updateActiveNav('posters');
-            } else if (scrollPos < sections.contacts) {
+            if (scrollPos < sections.posters) {
                 updateActiveNav('about');
+            } else if (scrollPos < sections.contacts) {
+                updateActiveNav('posters');
             } else {
                 updateActiveNav('contacts');
             }
         });
 
         function initSlider() {
-            posterSlides.forEach((slideData, index) => {
+            aboutSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
                 
@@ -502,8 +503,8 @@
                     this.style.alignItems = 'center';
                     this.style.justifyContent = 'center';
                     this.style.color = '#d87093';
-                    this.style.fontSize = '26px';
-                    this.style.fontWeight = '600';
+                    this.style.fontSize = '28px';
+                    this.style.fontWeight = '700';
                     this.style.fontFamily = "'Chair406', sans-serif";
                     this.textContent = slideData.title;
                 };
@@ -535,8 +536,8 @@
 
         function updateInfoPanel() {
             const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
-            const slideData = posterSlides[realIndex] || posterSlides[0];
-            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
+            const slideData = aboutSlides[realIndex] || aboutSlides[0];
+            currentSlideInfo.textContent = `${slideData.subtitle} • ${slideData.title}`;
         }
 
         function updateDots() {
