@@ -101,26 +101,52 @@
             padding-right: 50px;
             padding-bottom: 80px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .slider-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: relative;
             width: 100%;
-            height: 100%;
+            height: 30%;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .slider-track {
             display: flex;
             height: 100%;
+            width: 300%;
             transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         
         .slider-slide {
+            min-width: 33.333%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-right: 20px;
+        }
+        
+        .main-slider-container {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            margin: 0 50px;
+        }
+        
+        .main-slider-track {
+            display: flex;
+            height: 100%;
+            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .main-slider-slide {
             min-width: 100%;
             height: 100%;
             flex-shrink: 0;
@@ -162,50 +188,47 @@
             transform: scale(1.02);
         }
 
-        /* СТИЛИ ДЛЯ ТЕКСТОВЫХ СЛАЙДОВ */
-        .text-slide {
+        /* ТЕКСТОВЫЕ СЛАЙДЫ */
+        .text-slide-container {
+            width: 570px;
+            height: 300px;
             background: linear-gradient(135deg, rgba(255, 245, 240, 0.95) 0%, rgba(255, 182, 193, 0.9) 100%);
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 60px 40px;
+            padding: 40px;
             backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 182, 193, 0.6);
+            box-shadow: 0 20px 60px rgba(216, 112, 147, 0.4);
         }
         
-        .text-slide h2 {
-            font-size: 48px;
+        .text-slide-container h2 {
+            font-size: 32px;
             font-weight: 700;
             background: linear-gradient(135deg, #d87093, #ff9bb8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 30px;
-            letter-spacing: -1px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
         
-        .text-slide p {
-            font-size: 22px;
+        .text-slide-container p {
+            font-size: 18px;
             color: #555;
-            line-height: 1.6;
-            max-width: 500px;
-            margin-bottom: 20px;
+            line-height: 1.5;
+            margin-bottom: 10px;
         }
         
         .contact-item {
-            font-size: 20px;
+            font-size: 18px;
             color: #d87093;
             font-weight: 600;
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            margin: 10px 0;
         }
-        
-        .contact-item.email::before { content: 'Email:'; }
-        .contact-item.phone::before { content: 'Телефон:'; }
-        .contact-item.telegram::before { content: 'Telegram:'; }
         
         .nav-btn {
             position: absolute;
@@ -226,8 +249,8 @@
             transition: all 0.3s ease;
         }
         
-        .left-btn { left: 40px; }
-        .right-btn { right: 40px; }
+        .main-left-btn { left: 40px; }
+        .main-right-btn { right: 40px; }
         
         .nav-btn:hover {
             background: rgba(255, 182, 193, 0.95);
@@ -241,184 +264,172 @@
             .dot { width: 12px; height: 12px; }
             .info-panel { width: 300px; padding: 30px; }
             .info-panel h1 { font-size: 28px; }
-            .text-slide h2 { font-size: 36px; }
-            .text-slide p { font-size: 18px; }
         }
     </style>
 </head>
 <body>
     <div class="info-panel">
         <h1>Постеры</h1>
-        <div class="current-slide" id="currentSlideInfo">Обо мне</div>
+        <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
         <div class="dots" id="dotsContainer"></div>
     </div>
     
     <div class="slider-section">
-        <div class="slider-container">
-            <div class="slider-track" id="sliderTrack"></div>
+        <!-- ВЕРХНИЙ СЛАЙД "ОБО МНЕ" -->
+        <div class="slider-container" id="aboutSlider">
+            <div class="slider-track" id="aboutTrack">
+                <div class="slider-slide">
+                    <div class="text-slide-container">
+                        <h2>Обо мне</h2>
+                        <p>Frontend разработчик</p>
+                        <p>с страстью к дизайну</p>
+                        <p>и анимациям</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
-        <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
+
+        <!-- ОСНОВНОЙ СЛАЙДЕР С ПОСТЕРАМИ -->
+        <div class="main-slider-container">
+            <div class="main-slider-track" id="mainSliderTrack"></div>
+            <button class="nav-btn main-left-btn" onclick="moveMainSlide(-1)">‹</button>
+            <button class="nav-btn main-right-btn" onclick="moveMainSlide(1)">›</button>
+        </div>
+
+        <!-- НИЖНИЕ СЛАЙДЫ КОНТАКТОВ -->
+        <div class="slider-container" id="contactsSlider">
+            <div class="slider-track" id="contactsTrack">
+                <div class="slider-slide">
+                    <div class="text-slide-container">
+                        <h2>Email</h2>
+                        <div class="contact-item">hello@design.ru</div>
+                    </div>
+                </div>
+                <div class="slider-slide">
+                    <div class="text-slide-container">
+                        <h2>Телефон</h2>
+                        <div class="contact-item">+7 (999) 123-45-67</div>
+                    </div>
+                </div>
+                <div class="slider-slide">
+                    <div class="text-slide-container">
+                        <h2>Telegram</h2>
+                        <div class="contact-item">@yourusername</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // ДАННЫЕ СЛАЙДОВ
-        const slidesData = [
-            // 1. СЛАЙД "ОБО МНЕ" (СВЕРХУ)
-            {type: 'text', title: 'Обо мне', content: 'Frontend разработчик\nс страстью к дизайну\nи анимациям', image: null},
-            
-            // 2. ПОСТЕРЫ (БЕЗ ИЗМЕНЕНИЙ)
+        // ДАННЫЕ ПОСТЕРОВ (БЕЗ ИЗМЕНЕНИЙ)
+        const posterSlides = [
             {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
             {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
             {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
-            {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'},
-            
-            // 3-5. КОНТАКТЫ (СНИЗУ)
-            {type: 'contacts', title: 'Email', content: 'hello@design.ru', image: null, contactType: 'email'},
-            {type: 'contacts', title: 'Телефон', content: '+7 (999) 123-45-67', image: null, contactType: 'phone'},
-            {type: 'contacts', title: 'Telegram', content: '@yourusername', image: null, contactType: 'telegram'}
+            {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
         ];
 
-        // ЭЛЕМЕНТЫ
-        const track = document.getElementById('sliderTrack');
+        // ОСНОВНОЙ СЛАЙДЕР
+        const mainTrack = document.getElementById('mainSliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
-        let currentIndex = 1;
-        let slideCount = slidesData.length - 2; // -2 клоны
+        let currentMainIndex = 1;
+        let mainSlideCount = posterSlides.length;
         let autoScrollInterval;
-        let isPaused = false;
 
-        // ИНИЦИАЛИЗАЦИЯ
-        function initSlider() {
-            slidesData.forEach((slideData, index) => {
+        // ИНИЦИАЛИЗАЦИЯ ОСНОВНОГО СЛАЙДЕРА
+        function initMainSlider() {
+            posterSlides.forEach((slideData, index) => {
                 const slide = document.createElement('div');
-                slide.className = 'slider-slide';
+                slide.className = 'main-slider-slide';
                 
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'slide-image-container';
                 
-                if (slideData.type === 'text') {
-                    // ТЕКСТОВЫЙ СЛАЙД "ОБО МНЕ"
-                    imageContainer.classList.add('text-slide');
-                    imageContainer.innerHTML = `
-                        <h2>${slideData.title}</h2>
-                        ${slideData.content.split('\n').map(line => `<p>${line}</p>`).join('')}
-                    `;
-                } else if (slideData.type === 'contacts') {
-                    // КОНТАКТНЫЕ СЛАЙДЫ
-                    imageContainer.classList.add('text-slide');
-                    imageContainer.innerHTML = `
-                        <h2>${slideData.title}</h2>
-                        <div class="contact-item ${slideData.contactType}">${slideData.content}</div>
-                    `;
-                } else {
-                    // ОБЫЧНЫЕ ИЗОБРАЖЕНИЯ (ПОСТЕРЫ)
-                    const img = document.createElement('img');
-                    img.src = slideData.image;
-                    img.alt = slideData.title;
-                    
-                    img.onerror = function() {
-                        this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
-                        this.style.display = 'flex';
-                        this.style.alignItems = 'center';
-                        this.style.justifyContent = 'center';
-                        this.style.color = '#d87093';
-                        this.style.fontSize = '24px';
-                        this.style.fontWeight = '600';
-                        this.style.fontFamily = "'Chair406', sans-serif";
-                        this.textContent = slideData.title;
-                    };
-                    
-                    imageContainer.appendChild(img);
-                }
+                const img = document.createElement('img');
+                img.src = slideData.image;
+                img.alt = slideData.title;
                 
+                img.onerror = function() {
+                    this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
+                    this.style.display = 'flex';
+                    this.style.alignItems = 'center';
+                    this.style.justifyContent = 'center';
+                    this.style.color = '#d87093';
+                    this.style.fontSize = '24px';
+                    this.style.fontWeight = '600';
+                    this.style.fontFamily = "'Chair406', sans-serif";
+                    this.textContent = slideData.title;
+                };
+                
+                imageContainer.appendChild(img);
                 slide.appendChild(imageContainer);
-                track.appendChild(slide);
+                mainTrack.appendChild(slide);
                 
-                // ТОЧКИ ТОЛЬКО ДЛЯ ОСНОВНЫХ СЛАЙДОВ
-                if (index < slidesData.length) {
-                    const dot = document.createElement('div');
-                    dot.className = 'dot';
-                    dot.onclick = () => goToSlide(index + 1);
-                    dotsContainer.appendChild(dot);
-                }
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.onclick = () => goToMainSlide(index + 1);
+                dotsContainer.appendChild(dot);
             });
             
-            // БЕСКОНЕЧНЫЙ ЦИКЛ
-            const firstClone = track.firstElementChild.cloneNode(true);
-            const lastClone = track.lastElementChild.cloneNode(true);
-            track.appendChild(firstClone);
-            track.insertBefore(lastClone, track.firstElementChild);
+            const firstClone = mainTrack.firstElementChild.cloneNode(true);
+            const lastClone = mainTrack.lastElementChild.cloneNode(true);
+            mainTrack.appendChild(firstClone);
+            mainTrack.insertBefore(lastClone, mainTrack.firstElementChild);
             
-            updateSlider();
+            updateMainSlider();
             startAutoScroll();
         }
 
-        // ОБНОВЛЕНИЕ СЛАЙДЕРА
-        function updateSlider() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            updateDots();
+        function updateMainSlider() {
+            mainTrack.style.transform = `translateX(-${currentMainIndex * 100}%)`;
+            updateMainDots();
             updateInfoPanel();
         }
 
-        // ИНФО ПАНЕЛЬ
         function updateInfoPanel() {
-            const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
-            const slideData = slidesData[realIndex] || slidesData[0];
-            currentSlideInfo.textContent = slideData.title;
+            const realIndex = ((currentMainIndex - 1 + mainSlideCount) % mainSlideCount);
+            const slideData = posterSlides[realIndex] || posterSlides[0];
+            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
         }
 
-        // ТОЧКИ
-        function updateDots() {
+        function updateMainDots() {
             document.querySelectorAll('.dot').forEach((dot, index) => {
-                const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
+                const realIndex = ((currentMainIndex - 1 + mainSlideCount) % mainSlideCount);
                 dot.classList.toggle('active', index === realIndex);
             });
         }
 
-        // ПЕРЕМЕЩЕНИЕ
-        function moveSlide(direction) {
-            pauseAutoScroll();
-            currentIndex += direction;
-            if (currentIndex > slideCount + 1) currentIndex = 1;
-            else if (currentIndex < 1) currentIndex = slideCount + 1;
-            updateSlider();
-            setTimeout(resumeAutoScroll, 2000);
+        function moveMainSlide(direction) {
+            currentMainIndex += direction;
+            if (currentMainIndex > mainSlideCount) currentMainIndex = 1;
+            else if (currentMainIndex < 1) currentMainIndex = mainSlideCount;
+            updateMainSlider();
         }
 
-        // ПРЯМОЙ ПЕРЕХОД
-        function goToSlide(n) {
-            currentIndex = n;
-            pauseAutoScroll();
-            updateSlider();
-            setTimeout(resumeAutoScroll, 2000);
+        function goToMainSlide(n) {
+            currentMainIndex = n;
+            updateMainSlider();
         }
 
-        // АВТОПРОКРУТКА
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
-                if (!isPaused) moveSlide(1);
+                moveMainSlide(1);
             }, 6000);
         }
 
-        function pauseAutoScroll() {
-            isPaused = true;
-            clearInterval(autoScrollInterval);
-        }
-
-        function resumeAutoScroll() {
-            isPaused = false;
-            startAutoScroll();
-        }
-
-        // ЗАПУСК
+        // АВТОПАУЗА НА КНОПКАХ
         document.addEventListener('DOMContentLoaded', function() {
-            initSlider();
+            initMainSlider();
             
-            document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
-            document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
-            document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
-            document.querySelector('.right-btn').addEventListener('mouseleave', resumeAutoScroll);
+            const leftBtn = document.querySelector('.main-left-btn');
+            const rightBtn = document.querySelector('.main-right-btn');
+            
+            leftBtn.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            rightBtn.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            leftBtn.addEventListener('mouseleave', startAutoScroll);
+            rightBtn.addEventListener('mouseleave', startAutoScroll);
         });
     </script>
 </body>
