@@ -20,12 +20,8 @@
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
-            min-height: 100vh;
+            height: 100vh;
             background: 
                 linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(253, 240, 235, 0.5) 100%),
                 url("pink_background.jpg");
@@ -33,235 +29,80 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            overflow: hidden;
             position: relative;
             display: flex;
-            flex-direction: column;
             font-family: 'Chair406', Arial, sans-serif;
         }
-
-        /* 🌸 ОСТРОВОК НАВИГАЦИИ */
-        .top-nav {
-            position: fixed;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(253, 245, 240, 0.95);
-            backdrop-filter: blur(25px);
-            padding: 15px 40px;
-            border-radius: 50px;
-            box-shadow: 0 20px 50px rgba(216, 112, 147, 0.4);
-            border: 2px solid rgba(255, 182, 193, 0.5);
-            z-index: 1000;
-            display: flex;
-            gap: 35px;
-            align-items: center;
-        }
-
-        .nav-item {
-            color: #d87093;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 600;
-            padding: 12px 25px;
-            border-radius: 30px;
-            background: rgba(255, 182, 193, 0.2);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid rgba(216, 112, 147, 0.3);
-            cursor: pointer;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            color: white;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(216, 112, 147, 0.5);
-        }
-
-        .logo-nav {
-            font-size: 22px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-        }
-
-        /* ОСНОВНОЙ КОНТЕЙНЕР - ПЕРВАЯ СЕКЦИЯ */
-        .main-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 140px 20px 80px;
-            min-height: 100vh;
-        }
-
-        /* СЕКЦИЯ ОБО МНЕ (ПЕРВАЯ) */
-        .about-section {
-            display: flex;
-            max-width: 1600px;
-            width: 100%;
-            gap: 50px;
-            align-items: center;
-        }
-
+        
         .info-panel {
-            width: 420px;
-            flex-shrink: 0;
-            background: rgba(253, 245, 240, 0.9);
-            backdrop-filter: blur(25px);
-            padding: 55px;
-            border-radius: 40px;
+            width: 380px;
+            background: rgba(253, 245, 240, 0.75);
+            backdrop-filter: blur(20px);
+            padding: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 30px 70px rgba(255, 182, 193, 0.4);
-            border: 2px solid rgba(255, 182, 193, 0.3);
+            box-shadow: 5px 0 30px rgba(255, 182, 193, 0.3);
             z-index: 10;
+            position: relative;
         }
         
         .info-panel h1 {
-            font-size: 44px;
+            font-size: 36px;
             font-weight: 700;
             background: linear-gradient(135deg, #d87093, #ff9bb8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 35px;
-            letter-spacing: -0.8px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
         
         .info-panel .current-slide {
-            font-size: 26px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 500;
             color: #555;
-            margin-bottom: 65px;
-            background: rgba(255, 245, 240, 0.95);
-            padding: 35px 40px;
-            border-radius: 35px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 15px 45px rgba(216, 112, 147, 0.35);
-            border: 2px solid rgba(255, 182, 193, 0.25);
-            line-height: 1.4;
-            text-align: center;
+            margin-bottom: 50px;
+            background: rgba(255, 245, 240, 0.85);
+            padding: 18px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(216, 112, 147, 0.2);
         }
         
         .dots {
             display: flex;
             flex-direction: row;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         .dot {
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: rgba(255, 182, 193, 0.75);
+            background: rgba(255, 182, 193, 0.7);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid rgba(216, 112, 147, 0.3);
+            transition: all 0.3s ease;
         }
         
         .dot.active {
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            transform: scale(1.6);
-            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.65);
+            background: #d87093;
+            transform: scale(1.4);
+            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.5);
         }
 
-        /* СЕКЦИЯ ПОСТЕРЫ */
-        .posters-section {
-            padding: 120px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .posters-content {
-            background: rgba(253, 245, 240, 0.9);
-            backdrop-filter: blur(25px);
-            padding: 60px;
-            border-radius: 40px;
-            box-shadow: 0 30px 80px rgba(255, 182, 193, 0.4);
-            border: 2px solid rgba(255, 182, 193, 0.3);
-        }
-
-        .posters-content h1 {
-            font-size: 42px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 30px;
-        }
-
-        .posters-content p {
-            font-size: 20px;
-            color: #666;
-            line-height: 1.7;
-            max-width: 700px;
-            margin: 0 auto 25px;
-        }
-
-        /* СЕКЦИЯ КОНТАКТЫ */
-        .contacts-section {
-            padding: 120px 20px 80px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contacts-content {
-            background: rgba(253, 245, 240, 0.9);
-            backdrop-filter: blur(25px);
-            padding: 60px;
-            border-radius: 40px;
-            box-shadow: 0 30px 80px rgba(255, 182, 193, 0.4);
-            border: 2px solid rgba(255, 182, 193, 0.3);
-        }
-
-        .contacts-content h1 {
-            font-size: 42px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 30px;
-        }
-
-        .contacts-list {
-            list-style: none;
-            font-size: 20px;
-            color: #666;
-        }
-
-        .contacts-list li {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(255, 182, 193, 0.1);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .contacts-list li:hover {
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        /* СЛАЙДЕР СТИЛИ */
         .slider-section {
             flex: 1;
             position: relative;
+            margin-left: 20px;
+            padding-right: 50px;
+            padding-bottom: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 85vh;
-            max-width: 1000px;
         }
         
         .slider-container {
@@ -287,25 +128,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding-right: 20px;
         }
         
         .slide-image-container {
-            width: 580px;
-            height: 1130px;
-            max-height: 88vh;
-            border-radius: 25px;
+            width: 570px;
+            height: 1122px;
+            max-height: 85vh;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 35px 120px rgba(216, 112, 147, 0.45);
-            background: rgba(255, 245, 240, 0.15);
-            backdrop-filter: blur(18px);
-            border: 4px solid rgba(255, 182, 193, 0.65);
+            box-shadow: 0 30px 100px rgba(216, 112, 147, 0.4);
+            background: rgba(255, 245, 240, 0.1);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 182, 193, 0.6);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
         
         .slide-image-container:hover {
-            transform: scale(1.025);
-            box-shadow: 0 45px 140px rgba(216, 112, 147, 0.55);
+            transform: scale(1.02);
+            box-shadow: 0 40px 120px rgba(216, 112, 147, 0.5);
         }
         
         .slide-image-container img {
@@ -317,175 +159,83 @@
         }
         
         .slide-image-container:hover img {
-            transform: scale(1.025);
+            transform: scale(1.02);
         }
         
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border: none;
             border-radius: 50%;
-            background: rgba(253, 245, 240, 0.9);
+            background: rgba(253, 245, 240, 0.85);
             color: #d87093;
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.45);
-            backdrop-filter: blur(15px);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 25px rgba(216, 112, 147, 0.4);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
         
-        .left-btn { left: 45px; }
-        .right-btn { right: 45px; }
+        .left-btn { left: 40px; }
+        .right-btn { right: 40px; }
         
         .nav-btn:hover {
-            background: linear-gradient(135deg, #d87093, #ff9bb8);
-            transform: translateY(-50%) scale(1.15);
+            background: rgba(255, 182, 193, 0.95);
+            transform: translateY(-50%) scale(1.1);
             color: white;
-            box-shadow: 0 18px 45px rgba(216, 112, 147, 0.65);
+            box-shadow: 0 12px 35px rgba(216, 112, 147, 0.6);
         }
 
         @media (max-width: 768px) {
-            .top-nav {
-                flex-direction: column;
-                gap: 18px;
-                padding: 20px 30px;
-                top: 15px;
-            }
-            .about-section {
-                flex-direction: column;
-                gap: 35px;
-            }
-            .info-panel { 
-                width: 100%; 
-                max-width: 380px;
-                padding: 45px;
-            }
-            .slider-section { 
-                height: 65vh;
-            }
-            .info-panel h1 { font-size: 36px; }
-            .info-panel .current-slide { 
-                font-size: 22px; 
-                padding: 28px 32px; 
-            }
-            .dots { gap: 14px; }
-            .dot { width: 16px; height: 16px; }
-            .posters-content, .contacts-content {
-                padding: 40px 30px;
-            }
+            .dots { gap: 10px; }
+            .dot { width: 12px; height: 12px; }
+            .info-panel { width: 300px; padding: 30px; }
+            .info-panel h1 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-    <!-- 🌸 ОСТРОВОК НАВИГАЦИИ -->
-    <div class="top-nav">
-        <div class="logo-nav" onclick="scrollToTop()">Портфолио</div>
-        <a href="#about" class="nav-item active" onclick="scrollToSection('about')">Обо мне</a>
-        <a href="#posters" class="nav-item" onclick="scrollToSection('posters')">Постеры</a>
-        <a href="#contacts" class="nav-item" onclick="scrollToSection('contacts')">Контакты</a>
+    <div class="info-panel">
+        <h1>🖼️ Постеры</h1>
+        <div class="current-slide" id="currentSlideInfo">Summer party • 1 290 ₽</div>
+        <div class="dots" id="dotsContainer"></div>
     </div>
-
-  <!-- ОСНОВНОЙ КОНТЕЙНЕР - ОБО МНЕ (ПЕРВАЯ СЕКЦИЯ СО СЛАЙДЕРОМ) -->
-<div class="main-content" id="about">
-    <div class="about-section">
-        <div class="info-panel">
-            <h1>Обо мне</h1>
-            <div class="current-slide" id="currentSlideInfo">
-                 Я Софья — дизайнер, который превращает идеи в красивые и функциональные цифровые продукты. 
-                Создаю сайты, логотипы и другие элементы визуальной коммуникации, которые помогают бизнесу привлекать клиентов и увеличивать продажи.
-            </div>
-            <div class="dots" id="dotsContainer"></div>
+    
+    <div class="slider-section">
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack"></div>
         </div>
-        
-        <div class="slider-section">
-            <!-- слайдер остается тот же -->
-        </div>
+        <button class="nav-btn left-btn" onclick="moveSlide(-1)">‹</button>
+        <button class="nav-btn right-btn" onclick="moveSlide(1)">›</button>
     </div>
-</div>
-
-    <!-- СЕКЦИЯ ПОСТЕРЫ -->
-    <section class="posters-section" id="posters">
-        <div class="posters-content">
-            <h1>Постеры</h1>
-            <p> Я Софья — дизайнер, который превращает идеи в красивые и функциональные цифровые продукты.</p>
-            <p>Создаю сайты, логотипы и другие элементы визуальной коммуникации, которые помогают бизнесу привлекать клиентов и увеличивать продажи.</p>
-        </div>
-    </section>
-
-    <!-- СЕКЦИЯ КОНТАКТЫ -->
-    <section class="contacts-section" id="contacts">
-        <div class="contacts-content">
-            <h1>Контакты</h1>
-            <ul class="contacts-list">
-                <li> Telegram: @ssrwqf</li>
-                <li> Email: rudakovskayasx@gmail.com</li>
-            </ul>
-        </div>
-    </section>
 
     <script>
-        // ДАННЫЕ СЛАЙДОВ (теперь про навыки/портфолио)
-        const aboutSlides = [
-            {image: 'пляж3.jpg', title: 'Summer party'},
-            {image: 'постер 14 ф.png', title: "Valentine's day"},
-            {image: 'постер merry chrismas.png', title: 'Merrry Christmas'},
-            {image: 'плакат 1 (2).png', title: 'Постер'}
+        // ДАННЫЕ ПОСТЕРОВ
+        const posterSlides = [
+            {image: 'пляж3.jpg', title: 'Summer party', price: '1 290 ₽'},
+            {image: 'постер 14 ф.png', title: "Valentine's day", price: '1 490 ₽'},
+            {image: 'постер merry chrismas.png', title: 'Merrry Christmas', price: '1 390 ₽'},
+            {image: 'плакат 1 (2).png', title: 'Постер', price: '1 590 ₽'}
         ];
 
+        // ЭЛЕМЕНТЫ
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('dotsContainer');
         const currentSlideInfo = document.getElementById('currentSlideInfo');
         let currentIndex = 1;
-        let slideCount = aboutSlides.length;
+        let slideCount = posterSlides.length;
         let autoScrollInterval;
         let isPaused = false;
 
-        // ФУНКЦИИ ПРОКРУТКИ
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-            updateActiveNav(sectionId);
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function updateActiveNav(activeSection) {
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            document.querySelector(`a[onclick="scrollToSection('${activeSection}')"]`).classList.add('active');
-        }
-
-        // Обработка прокрутки для активной навигации
-        window.addEventListener('scroll', () => {
-            const sections = {
-                about: document.getElementById('about').offsetTop,
-                posters: document.getElementById('posters').offsetTop,
-                contacts: document.getElementById('contacts').offsetTop
-            };
-            
-            const scrollPos = window.scrollY + 100;
-            
-            if (scrollPos < sections.posters) {
-                updateActiveNav('about');
-            } else if (scrollPos < sections.contacts) {
-                updateActiveNav('posters');
-            } else {
-                updateActiveNav('contacts');
-            }
-        });
-
+        // ИНИЦИАЛИЗАЦИЯ
         function initSlider() {
-            aboutSlides.forEach((slideData, index) => {
+            posterSlides.forEach((slideData, index) => {
+                // СОЗДАЕМ СЛАЙД
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
                 
@@ -496,14 +246,15 @@
                 img.src = slideData.image;
                 img.alt = slideData.title;
                 
+                // FALLBACK ЕСЛИ КАРТИНКА НЕ ЗАГРУЗИЛАСЬ
                 img.onerror = function() {
                     this.style.background = 'linear-gradient(135deg, #f9e4e8, #f0d4d9)';
                     this.style.display = 'flex';
                     this.style.alignItems = 'center';
                     this.style.justifyContent = 'center';
                     this.style.color = '#d87093';
-                    this.style.fontSize = '28px';
-                    this.style.fontWeight = '700';
+                    this.style.fontSize = '24px';
+                    this.style.fontWeight = '600';
                     this.style.fontFamily = "'Chair406', sans-serif";
                     this.textContent = slideData.title;
                 };
@@ -512,12 +263,14 @@
                 slide.appendChild(imageContainer);
                 track.appendChild(slide);
                 
+                // СОЗДАЕМ ТОЧКИ
                 const dot = document.createElement('div');
                 dot.className = 'dot';
                 dot.onclick = () => goToSlide(index + 1);
                 dotsContainer.appendChild(dot);
             });
             
+            // БЕСКОНЕЧНЫЙ ЦИКЛ - КЛОНИРУЕМ ПЕРВЫЙ И ПОСЛЕДНИЙ
             const firstClone = track.firstElementChild.cloneNode(true);
             const lastClone = track.lastElementChild.cloneNode(true);
             track.appendChild(firstClone);
@@ -527,18 +280,21 @@
             startAutoScroll();
         }
 
+        // ОБНОВЛЕНИЕ СЛАЙДЕРА
         function updateSlider() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateDots();
             updateInfoPanel();
         }
 
+        // ИНФО ПАНЕЛЬ
         function updateInfoPanel() {
             const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
-            const slideData = aboutSlides[realIndex] || aboutSlides[0];
-            currentSlideInfo.textContent = `${slideData.subtitle} • ${slideData.title}`;
+            const slideData = posterSlides[realIndex] || posterSlides[0];
+            currentSlideInfo.textContent = `${slideData.title} • ${slideData.price}`;
         }
 
+        // ТОЧКИ
         function updateDots() {
             document.querySelectorAll('.dot').forEach((dot, index) => {
                 const realIndex = ((currentIndex - 1 + slideCount) % slideCount);
@@ -546,6 +302,7 @@
             });
         }
 
+        // ПЕРЕМЕЩЕНИЕ
         function moveSlide(direction) {
             pauseAutoScroll();
             currentIndex += direction;
@@ -555,6 +312,7 @@
             setTimeout(resumeAutoScroll, 2000);
         }
 
+        // ПРЯМОЙ ПЕРЕХОД
         function goToSlide(n) {
             currentIndex = n;
             pauseAutoScroll();
@@ -562,6 +320,7 @@
             setTimeout(resumeAutoScroll, 2000);
         }
 
+        // АВТОПРОКРУТКА
         function startAutoScroll() {
             autoScrollInterval = setInterval(() => {
                 if (!isPaused) moveSlide(1);
@@ -578,9 +337,11 @@
             startAutoScroll();
         }
 
+        // ЗАПУСК
         document.addEventListener('DOMContentLoaded', function() {
             initSlider();
             
+            // ПАУЗА НА КНОПКАХ
             document.querySelector('.left-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelector('.right-btn').addEventListener('mouseenter', pauseAutoScroll);
             document.querySelector('.left-btn').addEventListener('mouseleave', resumeAutoScroll);
